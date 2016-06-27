@@ -8,12 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		0E9D71D61D209BCC00BD9EB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D71D51D209BCC00BD9EB6 /* AppDelegate.swift */; };
-		0E9D71D81D209BCC00BD9EB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D71D71D209BCC00BD9EB6 /* ViewController.swift */; };
+		0E9D71D81D209BCC00BD9EB6 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D71D71D209BCC00BD9EB6 /* ListViewController.swift */; };
 		0E9D71DB1D209BCC00BD9EB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E9D71D91D209BCC00BD9EB6 /* Main.storyboard */; };
 		0E9D71DD1D209BCC00BD9EB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E9D71DC1D209BCC00BD9EB6 /* Assets.xcassets */; };
 		0E9D71E01D209BCC00BD9EB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E9D71DE1D209BCC00BD9EB6 /* LaunchScreen.storyboard */; };
 		0E9D71EB1D209BCC00BD9EB6 /* ShoplistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D71EA1D209BCC00BD9EB6 /* ShoplistTests.swift */; };
 		0E9D71F61D209BCC00BD9EB6 /* ShoplistUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D71F51D209BCC00BD9EB6 /* ShoplistUITests.swift */; };
+		0E9D72081D209E3700BD9EB6 /* LibraryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D72071D209E3700BD9EB6 /* LibraryItem.swift */; };
+		0E9D720B1D209FC400BD9EB6 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D720A1D209FC400BD9EB6 /* ListItem.swift */; };
+		0E9D720D1D20A06C00BD9EB6 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D720C1D20A06C00BD9EB6 /* Details.swift */; };
+		0E9D720F1D20A10500BD9EB6 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D720E1D20A10500BD9EB6 /* Library.swift */; };
+		0E9D72111D20A4D500BD9EB6 /* Identity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D72101D20A4D500BD9EB6 /* Identity.swift */; };
+		0E9D72141D20A6C700BD9EB6 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D72131D20A6C600BD9EB6 /* List.swift */; };
+		0E9D72161D20A94600BD9EB6 /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D72151D20A94600BD9EB6 /* ListItemTableViewCell.swift */; };
+		0E9D72181D20AB0800BD9EB6 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D72171D20AB0800BD9EB6 /* CheckboxButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +44,7 @@
 /* Begin PBXFileReference section */
 		0E9D71D21D209BCC00BD9EB6 /* Shoplist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoplist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9D71D51D209BCC00BD9EB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0E9D71D71D209BCC00BD9EB6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0E9D71D71D209BCC00BD9EB6 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		0E9D71DA1D209BCC00BD9EB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E9D71DC1D209BCC00BD9EB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E9D71DF1D209BCC00BD9EB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +55,14 @@
 		0E9D71F11D209BCC00BD9EB6 /* ShoplistUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShoplistUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9D71F51D209BCC00BD9EB6 /* ShoplistUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoplistUITests.swift; sourceTree = "<group>"; };
 		0E9D71F71D209BCC00BD9EB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0E9D72071D209E3700BD9EB6 /* LibraryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryItem.swift; sourceTree = "<group>"; };
+		0E9D720A1D209FC400BD9EB6 /* ListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
+		0E9D720C1D20A06C00BD9EB6 /* Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
+		0E9D720E1D20A10500BD9EB6 /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		0E9D72101D20A4D500BD9EB6 /* Identity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identity.swift; sourceTree = "<group>"; };
+		0E9D72131D20A6C600BD9EB6 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		0E9D72151D20A94600BD9EB6 /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemTableViewCell.swift; sourceTree = "<group>"; };
+		0E9D72171D20AB0800BD9EB6 /* CheckboxButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +113,13 @@
 		0E9D71D41D209BCC00BD9EB6 /* Shoplist */ = {
 			isa = PBXGroup;
 			children = (
-				0E9D71D51D209BCC00BD9EB6 /* AppDelegate.swift */,
-				0E9D71D71D209BCC00BD9EB6 /* ViewController.swift */,
-				0E9D71D91D209BCC00BD9EB6 /* Main.storyboard */,
+				0E9D72031D209DB200BD9EB6 /* AppGlobal */,
+				0E9D72091D209F4300BD9EB6 /* Model */,
+				0E9D72041D209DBD00BD9EB6 /* Controller */,
+				0E9D72051D209DC900BD9EB6 /* View */,
 				0E9D71DC1D209BCC00BD9EB6 /* Assets.xcassets */,
-				0E9D71DE1D209BCC00BD9EB6 /* LaunchScreen.storyboard */,
-				0E9D71E11D209BCC00BD9EB6 /* Info.plist */,
+				0E9D72061D209DE800BD9EB6 /* SupportingFiles */,
+				0E9D72121D20A4DC00BD9EB6 /* Protocol */,
 			);
 			path = Shoplist;
 			sourceTree = "<group>";
@@ -123,6 +140,61 @@
 				0E9D71F71D209BCC00BD9EB6 /* Info.plist */,
 			);
 			path = ShoplistUITests;
+			sourceTree = "<group>";
+		};
+		0E9D72031D209DB200BD9EB6 /* AppGlobal */ = {
+			isa = PBXGroup;
+			children = (
+				0E9D71D51D209BCC00BD9EB6 /* AppDelegate.swift */,
+				0E9D71E11D209BCC00BD9EB6 /* Info.plist */,
+			);
+			name = AppGlobal;
+			sourceTree = "<group>";
+		};
+		0E9D72041D209DBD00BD9EB6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0E9D71D71D209BCC00BD9EB6 /* ListViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		0E9D72051D209DC900BD9EB6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0E9D71D91D209BCC00BD9EB6 /* Main.storyboard */,
+				0E9D72151D20A94600BD9EB6 /* ListItemTableViewCell.swift */,
+				0E9D72171D20AB0800BD9EB6 /* CheckboxButton.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		0E9D72061D209DE800BD9EB6 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				0E9D71DE1D209BCC00BD9EB6 /* LaunchScreen.storyboard */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		0E9D72091D209F4300BD9EB6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0E9D72071D209E3700BD9EB6 /* LibraryItem.swift */,
+				0E9D720A1D209FC400BD9EB6 /* ListItem.swift */,
+				0E9D720C1D20A06C00BD9EB6 /* Details.swift */,
+				0E9D720E1D20A10500BD9EB6 /* Library.swift */,
+				0E9D72131D20A6C600BD9EB6 /* List.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0E9D72121D20A4DC00BD9EB6 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				0E9D72101D20A4D500BD9EB6 /* Identity.swift */,
+			);
+			name = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +331,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E9D71D81D209BCC00BD9EB6 /* ViewController.swift in Sources */,
+				0E9D72181D20AB0800BD9EB6 /* CheckboxButton.swift in Sources */,
+				0E9D720B1D209FC400BD9EB6 /* ListItem.swift in Sources */,
+				0E9D72141D20A6C700BD9EB6 /* List.swift in Sources */,
+				0E9D720D1D20A06C00BD9EB6 /* Details.swift in Sources */,
+				0E9D72081D209E3700BD9EB6 /* LibraryItem.swift in Sources */,
+				0E9D71D81D209BCC00BD9EB6 /* ListViewController.swift in Sources */,
 				0E9D71D61D209BCC00BD9EB6 /* AppDelegate.swift in Sources */,
+				0E9D720F1D20A10500BD9EB6 /* Library.swift in Sources */,
+				0E9D72111D20A4D500BD9EB6 /* Identity.swift in Sources */,
+				0E9D72161D20A94600BD9EB6 /* ListItemTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,10 +484,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Shoplist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ok.Shoplist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -415,10 +498,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Shoplist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ok.Shoplist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
