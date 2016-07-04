@@ -1,5 +1,5 @@
 //
-//  Identity.swift
+//  Setup.swift
 //  Shoplist
 //
 //  Created by Olesia Kalashnik on 6/26/16.
@@ -8,11 +8,13 @@
 
 import Foundation
 
-protocol Identity {
+protocol Setup {
     static var id : String {get}
+    func setup()
+    func setupAppearance()
 }
 
-extension Identity {
+extension Setup {
     static var id : String {
         return String(self)
     }

@@ -2,7 +2,7 @@
 //  CheckboxButton.swift
 //  Shopping List_v.2.0
 //
-//  Created by Olesia Kalashnik on 3/26/16.
+//  Created by Olesia Kalashnik on 6/30/16.
 //  Copyright © 2016 Olesia Kalashnik. All rights reserved.
 //
 

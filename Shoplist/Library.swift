@@ -6,12 +6,32 @@
 //  Copyright © 2016 Olesia Kalashnik. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class Library {
-    var items : [LibraryItem]
+class Library: Savable, ItemStoreProtocol {
+    typealias Object = Item
     
-    init(libraryItems: [LibraryItem]) {
-        self.items = libraryItems
+    var path = Item.ArchiveURL.path!
+    
+    static let shared = Library()
+    private init() {
+        self.items = NSKeyedUnarchiver.unarchiveObjectWithFile(self.path) as? [Object] ?? [Object]()
     }
+    
+    var items : [Object]
+    
+    init(items: [Item]) {
+        self.items = items
+    }
+    
+    func addLibraryItem(item: Item) {
+        Library.shared.items.append(item)
+    }
+    
+    //Computed Variables and Methods
+    func getSelectedItems() -> [Item] {
+        return self.items.filter {$0.isInList}
+    }
+
+    
 }
