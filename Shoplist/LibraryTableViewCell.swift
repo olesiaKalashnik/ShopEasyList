@@ -30,7 +30,7 @@ extension LibraryTableViewCell : Setup {
     
     func setup() {
         guard let item = self.libraryItem else { return }
-        self.nameLabel?.text = item.name
+        self.nameLabel?.text = "\(item.name), bought \(item.numOfPurchaces) times"
         self.completionCheckbox.selected = item.isInList
     }
     

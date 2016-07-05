@@ -29,6 +29,8 @@
 		0E9D72801D26EC1900BD9EB6 /* AddNewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D727F1D26EC1900BD9EB6 /* AddNewItemViewController.swift */; };
 		0E9D72821D2701CF00BD9EB6 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D72811D2701CF00BD9EB6 /* PhotoViewController.swift */; };
 		0E9D72841D27099D00BD9EB6 /* ItemStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D72831D27099D00BD9EB6 /* ItemStoreProtocol.swift */; };
+		0E9D72881D2B232200BD9EB6 /* AddItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D72871D2B232200BD9EB6 /* AddItemTableViewController.swift */; };
+		0E9D728A1D2C298800BD9EB6 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D72891D2C298800BD9EB6 /* FavoritesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,9 +76,11 @@
 		0E9D72751D25CE0C00BD9EB6 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		0E9D72771D25E16B00BD9EB6 /* TableViewHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHelpers.swift; sourceTree = "<group>"; };
 		0E9D727B1D26DC3000BD9EB6 /* Savable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Savable.swift; sourceTree = "<group>"; };
-		0E9D727F1D26EC1900BD9EB6 /* AddNewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewItemViewController.swift; sourceTree = "<group>"; };
+		0E9D727F1D26EC1900BD9EB6 /* AddNewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddNewItemViewController.swift; path = Shoplist/AddNewItemViewController.swift; sourceTree = "<group>"; };
 		0E9D72811D2701CF00BD9EB6 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		0E9D72831D27099D00BD9EB6 /* ItemStoreProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemStoreProtocol.swift; sourceTree = "<group>"; };
+		0E9D72871D2B232200BD9EB6 /* AddItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemTableViewController.swift; sourceTree = "<group>"; };
+		0E9D72891D2C298800BD9EB6 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 				0E9D71E91D209BCC00BD9EB6 /* ShoplistTests */,
 				0E9D71F41D209BCC00BD9EB6 /* ShoplistUITests */,
 				0E9D71D31D209BCC00BD9EB6 /* Products */,
+				0E9D727F1D26EC1900BD9EB6 /* AddNewItemViewController.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,7 +176,8 @@
 				0E9D72711D25C14D00BD9EB6 /* LibraryViewController.swift */,
 				0E9D71D71D209BCC00BD9EB6 /* ListViewController.swift */,
 				0E9D72811D2701CF00BD9EB6 /* PhotoViewController.swift */,
-				0E9D727F1D26EC1900BD9EB6 /* AddNewItemViewController.swift */,
+				0E9D72871D2B232200BD9EB6 /* AddItemTableViewController.swift */,
+				0E9D72891D2C298800BD9EB6 /* FavoritesViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -360,7 +366,9 @@
 				0E9D72841D27099D00BD9EB6 /* ItemStoreProtocol.swift in Sources */,
 				0E9D727C1D26DC3000BD9EB6 /* Savable.swift in Sources */,
 				0E9D726C1D25B38D00BD9EB6 /* Favorites.swift in Sources */,
+				0E9D72881D2B232200BD9EB6 /* AddItemTableViewController.swift in Sources */,
 				0E9D726E1D25B44A00BD9EB6 /* Recents.swift in Sources */,
+				0E9D728A1D2C298800BD9EB6 /* FavoritesViewController.swift in Sources */,
 				0E9D71D81D209BCC00BD9EB6 /* ListViewController.swift in Sources */,
 				0E9D71D61D209BCC00BD9EB6 /* AppDelegate.swift in Sources */,
 				0E9D720F1D20A10500BD9EB6 /* Library.swift in Sources */,

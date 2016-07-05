@@ -42,6 +42,7 @@ class ListViewController: UIViewController, ItemStoreProtocol {
         for item in items {
             if item.isCompleted {
                 item.isInList = false
+                item.numOfPurchaces += 1
             }
         }
         self.hideCompletedOutlet.enabled = items.filter({$0.isInList}).count > 0

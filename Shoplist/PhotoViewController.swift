@@ -49,8 +49,9 @@ extension PhotoViewController : UINavigationControllerDelegate, UIImagePickerCon
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.imageView.image = image
             if let navController = presentingViewController as? UINavigationController {
-                if let addVC = navController.viewControllers.first as? AddNewItemViewController {
+                if let addVC = navController.viewControllers.first as? AddItemTableViewController {
                     addVC.image = image
+                    addVC.imageView.image = image
                 }
             }
         }

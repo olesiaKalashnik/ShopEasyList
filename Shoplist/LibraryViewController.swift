@@ -46,7 +46,6 @@ class LibraryViewController: UIViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    //MARK: ListViewControllerDelegate Methods
     func updateListWithSelectedItems() -> [Item] {
         let selectedItems = self.library.items.filter {$0.isInList}
         if self.currentList.count > 0 {
@@ -86,6 +85,21 @@ extension LibraryViewController : UITableViewDataSource {
         var allItemsBySection = library.groupedItemsAsList
         cell.libraryItem = allItemsBySection[indexPath.section][indexPath.row]
         return cell
+    }
+}
+
+//MARK: - TableView Delegate Methods
+extension LibraryViewController : UITableViewDelegate {
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            let librsaryItemsGrouped = library.groupedItemsAsList
+            let itemToBeRemoved = librsaryItemsGrouped[indexPath.section][indexPath.row]
+            itemToBeRemoved.isInList = false
+            print("Item to be deleted: \(itemToBeRemoved.name)")
+            self.library.remove(itemToBeRemoved)
+            //self.library.saveObjects()
+            tableView.reloadData()
+        }
     }
 }
 

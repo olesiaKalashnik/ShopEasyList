@@ -27,7 +27,7 @@ extension ItemStoreProtocol {
     }
     
     func remove(item: Item) {
-        self.items = self.items.filter{($0.name == item.name) && ($0.category == item.category)}
+        self.items = self.items.filter {(!$0.equals(item))}
     }
     
     var categories : [String] {
