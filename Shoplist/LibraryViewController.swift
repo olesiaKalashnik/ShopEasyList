@@ -20,7 +20,7 @@ class LibraryViewController: UIViewController {
         }
     }
     
-    var currentList = Library.shared.getSelectedItems()
+    var currentList = Library.shared.itemsInList
     var listVC: ListViewController?
     
     //MARK: Controller Lifecycle

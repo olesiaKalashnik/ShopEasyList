@@ -15,16 +15,19 @@ class Item : NSObject, NSCoding {
     var isCompleted : Bool
     var detailsText : String?
     var image: UIImage?
+    //var used : Bool
     var lastTimeAddedToList: NSDate?
     var numOfPurchaces : Int
     
-    init(name: String, category: String, isInList : Bool = false, completed: Bool = false, details: String? = nil, image : UIImage? = nil, isCompleted: Bool = false, addTime: NSDate? = nil, numOfPurchaces : Int = 0) {
+    init(name: String, category: String, isInList : Bool = false, completed: Bool = false, details: String? = nil, image : UIImage? = nil, //used: Bool = false,
+        isCompleted: Bool = false, addTime: NSDate? = nil, numOfPurchaces : Int = 0) {
         self.name = name
         self.category = category
         self.isInList = isInList
         self.isCompleted = completed
         self.detailsText = details
         self.image = image
+        //self.used = used
         self.lastTimeAddedToList = addTime
         self.numOfPurchaces = numOfPurchaces
     }
@@ -35,6 +38,7 @@ class Item : NSObject, NSCoding {
         static let isInList = "isInList"
         static let isCompleted = "isCompleted"
         static let detailsText = "detailsText"
+        //static let used = "used"
         static let image = "image"
         static let lastTimeAddedToList = "lastTimeAddedToList"
         static let numOfPurchaces = "numOfPurchaces"
@@ -56,6 +60,7 @@ class Item : NSObject, NSCoding {
         aCoder.encodeObject(isCompleted, forKey: PropertyKey.isCompleted)
         aCoder.encodeObject(detailsText, forKey: PropertyKey.detailsText)
         aCoder.encodeObject(image, forKey: PropertyKey.image)
+        //aCoder.encodeObject(used, forKey: PropertyKey.used)
         aCoder.encodeObject(lastTimeAddedToList, forKey: PropertyKey.lastTimeAddedToList)
         aCoder.encodeObject(numOfPurchaces, forKey: PropertyKey.numOfPurchaces)
     }
@@ -67,10 +72,12 @@ class Item : NSObject, NSCoding {
         let isCompleted = aDecoder.decodeObjectForKey(PropertyKey.isCompleted) as! Bool
         let detailsText = aDecoder.decodeObjectForKey(PropertyKey.detailsText) as? String
         let image = aDecoder.decodeObjectForKey(PropertyKey.image) as? UIImage
+        //let used = aDecoder.decodeObjectForKey(PropertyKey.used) as! Bool
         let lastTimeAddedToList = aDecoder.decodeObjectForKey(PropertyKey.lastTimeAddedToList) as? NSDate
         let numOfPurchaces = aDecoder.decodeObjectForKey(PropertyKey.numOfPurchaces) as! Int
         
-        self.init(name: name, category: category, isInList: isInList, completed: isCompleted, details: detailsText, image: image, addTime: lastTimeAddedToList, numOfPurchaces: numOfPurchaces)
+        self.init(name: name, category: category, isInList: isInList, completed: isCompleted, details: detailsText, image: image, //used: used,
+            addTime: lastTimeAddedToList, numOfPurchaces: numOfPurchaces)
     }
     
 }

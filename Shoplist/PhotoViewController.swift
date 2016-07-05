@@ -55,11 +55,11 @@ extension PhotoViewController : UINavigationControllerDelegate, UIImagePickerCon
                 }
             }
         }
-        dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
         
     }
 }

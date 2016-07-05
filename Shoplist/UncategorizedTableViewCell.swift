@@ -1,17 +1,18 @@
 //
-//  LibraryTableViewCell.swift
+//  UncategorizedTableViewCell.swift
 //  Shoplist
 //
-//  Created by Olesia Kalashnik on 6/30/16.
+//  Created by Olesia Kalashnik on 7/5/16.
 //  Copyright © 2016 Olesia Kalashnik. All rights reserved.
 //
 
 import UIKit
 
-class LibraryTableViewCell: UITableViewCell {
-    
+class UncategorizedTableViewCell: UITableViewCell {
+
     @IBOutlet weak var completionCheckbox: CheckboxButton!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
     
     var libraryItem : Item? {
         didSet {
@@ -26,11 +27,12 @@ class LibraryTableViewCell: UITableViewCell {
     }
 }
 
-extension LibraryTableViewCell : Setup {
+extension UncategorizedTableViewCell : Setup {
     
     func setup() {
         guard let item = self.libraryItem else { return }
         self.nameLabel?.text = "\(item.name), bought \(item.numOfPurchaces) times"
+        self.categoryLabel?.text = item.category
         self.completionCheckbox.selected = item.isInList
     }
     

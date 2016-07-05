@@ -16,6 +16,9 @@ protocol ItemStoreProtocol : class {
     func unique<C : SequenceType, T : Hashable where C.Generator.Element == T>(inputArray: C) -> [T]
     var categoryToItemDictionary : [String: [Item]] { get }
     var groupedItemsAsList : [[Item]] { get }
+    var groupedListItems : [[Item]] { get }
+    var itemsInList : [Item] { get }
+    func editDetails(item: Item)
 }
 
 extension ItemStoreProtocol {
@@ -27,7 +30,7 @@ extension ItemStoreProtocol {
     }
     
     func remove(item: Item) {
-        self.items = self.items.filter {(!$0.equals(item))}
+        self.items = self.items.filter {!(($0.name == item.name) && ($0.category == item.category))}
     }
     
     var categories : [String] {
@@ -53,7 +56,33 @@ extension ItemStoreProtocol {
         return categorizedItems.values.map { $0 }
     }
     
+    var itemsInList : [Item] {
+        return self.items.filter{$0.isInList}
+    }
     
+    var categoryToListItemDictionary : [String: [Item]] {
+        var dict = [String: [Item]]()
+        for category in self.itemsInList.map({$0.category}) {
+            if dict[category] == nil {
+                dict[category] = self.items.filter { $0.category == category }
+            }
+        }
+        return dict
+    }
     
+    var groupedListItems : [[Item]] {
+        let categorizedListItems = self.categoryToListItemDictionary
+        return categorizedListItems.values.map { $0 }
+    }
     
+    func editDetails(itemToEdit: Item) {
+        for item in self.items {
+            if (item.name == itemToEdit.name) && (item.category == itemToEdit.category) {
+                item.detailsText = itemToEdit.detailsText
+            }
+        }
+//        if self.items.contains({($0.name == item.name) && ($0.category == item.category)}) {
+//            self.items.append(item)
+//        }
+    }
 }

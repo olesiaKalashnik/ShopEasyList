@@ -13,6 +13,7 @@ class AddItemTableViewController: UITableViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var detailsTextField: UITextField!
     
+    var item : Item?
     @IBOutlet weak var addImageButton: UIButton!
     let library = Library.shared
     var image : UIImage?
@@ -26,9 +27,13 @@ class AddItemTableViewController: UITableViewController {
         self.addImageButton?.layer.cornerRadius = 3.0
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setup()
+    }
+    
     //MARK: @IBActions
     @IBAction func saveNewItem(sender: UIBarButtonItem) {
-        var item : Item
         if let newItem = self.nameTextField.text {
             if newItem != "" {
                 if let selectedCategory = self.category {
@@ -36,18 +41,21 @@ class AddItemTableViewController: UITableViewController {
                 } else {
                     item = Item(name: newItem, category: "None")
                 }
-                item.isInList = true
-                item.isCompleted = false
-                item.numOfPurchaces = 0
-                item.detailsText = detailsTextField.text
-                item.image = self.image
-                print(item.image)
-                library.add(item)
+                item!.isInList = true
+                item!.isCompleted = false
+                item!.numOfPurchaces = 0
+                item!.detailsText = detailsTextField.text
+                item!.image = self.image
+                
+                library.editDetails(item!)
+                library.add(item!)
                 library.saveObjects()
             }
         }
         self.nameTextField.text = nil
-        dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true) { 
+            print()
+        }
     }
     
     
@@ -107,5 +115,32 @@ extension AddItemTableViewController : UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+}
+
+extension AddItemTableViewController : ListViewControllerDelegate {
+    func updateItem() -> Item? {
+        for item in self.library.items {
+            if (item.name == self.item?.name) && (item.category == self.item?.category) {
+                item.detailsText = self.detailsTextField.text
+            }
+        }
+        return self.item
+    }
+}
+
+extension AddItemTableViewController : Setup {
+    func setup() {
+        self.nameTextField.text = item?.name
+        self.detailsTextField.text = item?.detailsText
+        self.category = item?.category
+        self.imageView?.image = item?.image
+    }
+    
+    func setupAppearance() {
+        //
+    }
+    
+    
+    
 }
 
