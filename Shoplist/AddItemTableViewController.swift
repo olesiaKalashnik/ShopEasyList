@@ -53,9 +53,7 @@ class AddItemTableViewController: UITableViewController {
             }
         }
         self.nameTextField.text = nil
-        dismissViewControllerAnimated(true) { 
-            print()
-        }
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     
@@ -97,6 +95,13 @@ class AddItemTableViewController: UITableViewController {
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
         }
     }
+    
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        if item != nil && indexPath.section == 1 {
+            return nil
+        }
+        return indexPath
+    }
 }
 
 //MARK: TextFieldDelegate Methods
@@ -117,23 +122,18 @@ extension AddItemTableViewController : UITextFieldDelegate {
     }
 }
 
-extension AddItemTableViewController : ListViewControllerDelegate {
-    func updateItem() -> Item? {
-        for item in self.library.items {
-            if (item.name == self.item?.name) && (item.category == self.item?.category) {
-                item.detailsText = self.detailsTextField.text
-            }
-        }
-        return self.item
-    }
-}
-
 extension AddItemTableViewController : Setup {
     func setup() {
-        self.nameTextField.text = item?.name
-        self.detailsTextField.text = item?.detailsText
-        self.category = item?.category
-        self.imageView?.image = item?.image
+        if item != nil {
+            self.nameTextField.enabled = false
+            self.nameTextField.text = item?.name
+            self.detailsTextField.text = item?.detailsText
+            self.category = item?.category
+            self.imageView?.image = item?.image
+            
+        } else {
+            self.nameTextField.enabled = true
+        }
     }
     
     func setupAppearance() {

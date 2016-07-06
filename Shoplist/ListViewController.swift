@@ -8,9 +8,9 @@
 
 import UIKit
 
-protocol ListViewControllerDelegate {
-    func updateItem() -> Item?
-}
+//protocol ListViewControllerDelegate {
+//    func updateItem() -> Item?
+//}
 
 class ListViewController: UIViewController, ItemStoreProtocol {
     
@@ -18,7 +18,7 @@ class ListViewController: UIViewController, ItemStoreProtocol {
     
     @IBOutlet weak var hideCompletedOutlet: UIBarButtonItem!
     
-    var delegate : ListViewControllerDelegate?
+    //var delegate : ListViewControllerDelegate?
     
     var items = Library.shared.itemsInList { // Library.shared.items.filter({$0.isInList}) {
         didSet {
@@ -26,7 +26,7 @@ class ListViewController: UIViewController, ItemStoreProtocol {
         }
     }
     
-    var itemBeingEdited : Item?
+    //var itemBeingEdited : Item?
     
     //MARK: Controller Lifecycle
     override func viewDidLoad() {
@@ -35,12 +35,12 @@ class ListViewController: UIViewController, ItemStoreProtocol {
         self.updateUI()
     }
     
-    var passedItem: Item?
+    //var passedItem: Item?
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        print(passedItem?.detailsText)
+        //print(passedItem?.detailsText)
         
 //        if let delegate = self.delegate {
 //            delegate.updateItem()
@@ -89,7 +89,7 @@ class ListViewController: UIViewController, ItemStoreProtocol {
                 guard let indexPath = self.tableView.indexPathForCell(sender as! ListItemWithDetailsTableViewCell) else { return }
                 var allItemsBySection = Library.shared.groupedListItems //self.groupedItemsAsList
                 addVC.item = allItemsBySection[indexPath.section][indexPath.row]
-                passedItem = allItemsBySection[indexPath.section][indexPath.row]
+                //passedItem = allItemsBySection[indexPath.section][indexPath.row]
                 print(addVC.item?.name)
             }
         }

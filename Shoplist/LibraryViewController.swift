@@ -47,7 +47,7 @@ class LibraryViewController: UIViewController {
     }
     
     func updateListWithSelectedItems() -> [Item] {
-        let selectedItems = self.library.items.filter {$0.isInList}
+        let selectedItems = self.library.itemsInList //self.library.items.filter {$0.isInList}
         if self.currentList.count > 0 {
             var itemsToBeAdded = [Item]()
             for item in selectedItems {
