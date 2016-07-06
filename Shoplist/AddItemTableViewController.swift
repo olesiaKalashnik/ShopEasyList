@@ -22,12 +22,12 @@ class AddItemTableViewController: UITableViewController {
         }
     }
     
-    var category : String?
+    private var category : String?
     @IBOutlet weak var imageView: UIImageView!
     
-    var rememberedEditedDetailsText : String?
+    private var rememberedEditedDetailsText : String?
     
-    var rememberedEditedImage : UIImage?
+    private var rememberedEditedImage : UIImage?
     
     //MARK: Controller Lifecycle
     override func viewDidLoad() {
@@ -119,7 +119,6 @@ class AddItemTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        print("Item.category: \(item?.category)")
         if indexPath.section == 1 && (item != nil) {
             return nil
         }
@@ -129,12 +128,10 @@ class AddItemTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == PhotoViewController.id {
             if let photoVC = segue.destinationViewController as? PhotoViewController {
-                //guard let safeItem = self.item else {return}
                 if let safeImage = self.imageView.image {
                     photoVC.image = safeImage
                 }
             }
-            
         }
     }
 }

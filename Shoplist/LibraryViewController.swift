@@ -27,7 +27,7 @@ class LibraryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-        self.setupAppearance()
+        //self.setupAppearance()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -105,6 +105,7 @@ extension LibraryViewController : UITableViewDelegate {
 extension LibraryViewController : Setup {
     func setup() {
         self.navigationItem.title = "Library"
+        self.tabBarController?.setToolbarItems(nil, animated: false)
     }
     
     func setupAppearance() {

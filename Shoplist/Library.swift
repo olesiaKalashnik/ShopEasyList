@@ -29,9 +29,9 @@ class Library: Savable, ItemStoreProtocol {
     }
     
     //Computed Variables and Methods
-//    func getSelectedItems() -> [Item] {
-//        return self.items.filter {$0.isInList}
-//    }
+    func getSelectedItems() -> [Item] {
+        return self.items.filter {$0.isInList}
+    }
     
     
 }
