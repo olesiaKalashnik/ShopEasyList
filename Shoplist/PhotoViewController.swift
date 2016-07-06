@@ -10,13 +10,12 @@ import UIKit
 
 class PhotoViewController: UIViewController  {
     
-    //var item : Item?
-    
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
     let imagePicker = UIImagePickerController()
+    
+    var image : UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +24,7 @@ class PhotoViewController: UIViewController  {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        self.setupAppearance()
     }
     
     @IBAction func takePhoto(sender: UIBarButtonItem) {
@@ -47,9 +46,11 @@ extension PhotoViewController : UINavigationControllerDelegate, UIImagePickerCon
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            self.imageView.image = image
+            self.image = image
+            self.imageView.image = self.image
             if let navController = presentingViewController as? UINavigationController {
                 if let addVC = navController.viewControllers.first as? AddItemTableViewController {
+                    
                     addVC.image = image
                     addVC.imageView.image = image
                 }
@@ -59,7 +60,22 @@ extension PhotoViewController : UINavigationControllerDelegate, UIImagePickerCon
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        
         self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+}
+
+//MARK: - Setup Methods
+extension PhotoViewController : Setup {
+    func setup() {
+        //
+    }
+    
+    func setupAppearance() {
+        guard let safeImage = image else { return }
+        self.imageView?.image = safeImage
+        self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         
     }
 }

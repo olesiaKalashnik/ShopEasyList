@@ -47,7 +47,7 @@ class LibraryViewController: UIViewController {
     }
     
     func updateListWithSelectedItems() -> [Item] {
-        let selectedItems = self.library.itemsInList //self.library.items.filter {$0.isInList}
+        let selectedItems = self.library.itemsInList
         if self.currentList.count > 0 {
             var itemsToBeAdded = [Item]()
             for item in selectedItems {
@@ -95,9 +95,7 @@ extension LibraryViewController : UITableViewDelegate {
             let librsaryItemsGrouped = library.groupedItemsAsList
             let itemToBeRemoved = librsaryItemsGrouped[indexPath.section][indexPath.row]
             itemToBeRemoved.isInList = false
-            print("Item to be deleted: \(itemToBeRemoved.name)")
             self.library.remove(itemToBeRemoved)
-            //self.library.saveObjects()
             tableView.reloadData()
         }
     }

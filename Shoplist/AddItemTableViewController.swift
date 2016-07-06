@@ -16,20 +16,33 @@ class AddItemTableViewController: UITableViewController {
     var item : Item?
     @IBOutlet weak var addImageButton: UIButton!
     let library = Library.shared
-    var image : UIImage?
+    var image : UIImage? {
+        didSet {
+            self.rememberedEditedImage = image
+        }
+    }
+    
     var category : String?
     @IBOutlet weak var imageView: UIImageView!
+    
+    var rememberedEditedDetailsText : String?
+    
+    var rememberedEditedImage : UIImage?
     
     //MARK: Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem?.title = "Done"
-        self.addImageButton?.layer.cornerRadius = 3.0
+        self.setupAppearance()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.setup()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.rememberedEditedDetailsText = self.detailsTextField.text
     }
     
     //MARK: @IBActions
@@ -52,19 +65,28 @@ class AddItemTableViewController: UITableViewController {
                 library.saveObjects()
             }
         }
+        
         self.nameTextField.text = nil
-        dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
     @IBAction func Cancel(sender: UIBarButtonItem) {
+        self.rememberedEditedDetailsText = nil
+        self.rememberedEditedImage = nil
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
     // MARK: - TableView DataSource Methods
+    private struct TableViewConstants {
+        static let numberOfSections = 3
+        static let rowsInSectionOne = 2
+        static let rowsInSectionTwo = 12
+        static let rowsInSectionThree = 1
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return TableViewConstants.numberOfSections
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -77,7 +99,7 @@ class AddItemTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rowsBySection = [2, 12, 1]
+        let rowsBySection = [TableViewConstants.rowsInSectionOne, TableViewConstants.rowsInSectionTwo, TableViewConstants.rowsInSectionThree]
         return rowsBySection[section]
     }
     
@@ -97,10 +119,23 @@ class AddItemTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        if item != nil && indexPath.section == 1 {
+        print("Item.category: \(item?.category)")
+        if indexPath.section == 1 && (item != nil) {
             return nil
         }
         return indexPath
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == PhotoViewController.id {
+            if let photoVC = segue.destinationViewController as? PhotoViewController {
+                //guard let safeItem = self.item else {return}
+                if let safeImage = self.imageView.image {
+                    photoVC.image = safeImage
+                }
+            }
+            
+        }
     }
 }
 
@@ -124,23 +159,34 @@ extension AddItemTableViewController : UITextFieldDelegate {
 
 extension AddItemTableViewController : Setup {
     func setup() {
+        
         if item != nil {
             self.nameTextField.enabled = false
             self.nameTextField.text = item?.name
-            self.detailsTextField.text = item?.detailsText
+            if self.rememberedEditedDetailsText != nil {
+                self.detailsTextField.text = self.rememberedEditedDetailsText
+            } else {
+                self.detailsTextField.text = item?.detailsText
+            }
+            
             self.category = item?.category
-            self.imageView?.image = item?.image
+            
+            if self.rememberedEditedImage != nil {
+                self.imageView?.image = self.rememberedEditedImage
+            } else {
+                self.imageView?.image = item?.image
+            }
             
         } else {
             self.nameTextField.enabled = true
         }
+        self.tableView.reloadData()
     }
     
     func setupAppearance() {
-        //
+        self.navigationItem.rightBarButtonItem?.title = "Done"
+        self.addImageButton?.layer.cornerRadius = 3.0
     }
-    
-    
     
 }
 

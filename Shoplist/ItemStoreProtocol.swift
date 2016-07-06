@@ -79,6 +79,7 @@ extension ItemStoreProtocol {
         for item in self.items {
             if (item.name == itemToEdit.name) && (item.category == itemToEdit.category) {
                 item.detailsText = itemToEdit.detailsText
+                item.image = itemToEdit.image
             }
         }
 //        if self.items.contains({($0.name == item.name) && ($0.category == item.category)}) {

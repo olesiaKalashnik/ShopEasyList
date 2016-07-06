@@ -217,9 +217,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hg8-A9-nv4">
-                                <rect key="frame" x="20" y="28" width="560" height="528"/>
-                            </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GjB-WW-nUV">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
@@ -242,16 +239,21 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hg8-A9-nv4">
+                                <rect key="frame" x="200" y="200" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="2M2-4t-ewG"/>
+                                    <constraint firstAttribute="width" constant="200" id="CXJ-zo-YGv"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="GjB-WW-nUV" firstAttribute="leading" secondItem="ml1-lp-NMs" secondAttribute="leading" id="KF3-Xq-ezM"/>
-                            <constraint firstItem="hg8-A9-nv4" firstAttribute="top" secondItem="7kb-fm-TZF" secondAttribute="bottom" constant="8" symbolic="YES" id="MoV-5u-ok8"/>
-                            <constraint firstItem="hg8-A9-nv4" firstAttribute="leading" secondItem="ml1-lp-NMs" secondAttribute="leadingMargin" id="djG-tc-Cwf"/>
+                            <constraint firstItem="hg8-A9-nv4" firstAttribute="centerX" secondItem="ml1-lp-NMs" secondAttribute="centerX" id="cj2-vr-qS7"/>
                             <constraint firstAttribute="trailing" secondItem="GjB-WW-nUV" secondAttribute="trailing" id="fTW-a6-3ai"/>
                             <constraint firstItem="GjB-WW-nUV" firstAttribute="bottom" secondItem="yIJ-Sy-Ia1" secondAttribute="top" id="jWE-FS-1JK"/>
-                            <constraint firstItem="hg8-A9-nv4" firstAttribute="centerX" secondItem="GjB-WW-nUV" secondAttribute="centerX" id="mfS-Kj-yHL"/>
-                            <constraint firstItem="hg8-A9-nv4" firstAttribute="bottom" secondItem="GjB-WW-nUV" secondAttribute="top" id="tKZ-Jo-Cvv"/>
+                            <constraint firstItem="hg8-A9-nv4" firstAttribute="centerY" secondItem="ml1-lp-NMs" secondAttribute="centerY" id="sq5-28-D7E"/>
                         </constraints>
                     </view>
                     <connections>
@@ -865,7 +867,7 @@
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="ugH-Nd-KnB" kind="presentation" id="q9F-Ka-nIA"/>
+                                                        <segue destination="ugH-Nd-KnB" kind="presentation" identifier="PhotoViewController" id="q9F-Ka-nIA"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
