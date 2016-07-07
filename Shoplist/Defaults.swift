@@ -6,7 +6,7 @@
 //  Copyright © 2016 Olesia Kalashnik. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Defaults {
     
@@ -35,5 +35,10 @@ class Defaults {
         let bread = Item(name: "bread", category: AllCategories.BakedGoods.rawValue)
         let items = [apples, shampoo, butter, pie, bread]
         return items
+    }
+    
+    struct UI {
+        static let blueColor = UIColor(red: 50, green: 170, blue: 240, alpha: 1.0)
+        static let recentsFavoritsRowHeight = CGFloat(65.0)
     }
 }

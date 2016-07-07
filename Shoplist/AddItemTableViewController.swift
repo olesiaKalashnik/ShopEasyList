@@ -26,7 +26,6 @@ class AddItemTableViewController: UITableViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     private var rememberedEditedDetailsText : String?
-    
     private var rememberedEditedImage : UIImage?
     
     //MARK: Controller Lifecycle
@@ -67,6 +66,7 @@ class AddItemTableViewController: UITableViewController {
         }
         
         self.nameTextField.text = nil
+        self.detailsTextField.text = nil
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -96,6 +96,12 @@ class AddItemTableViewController: UITableViewController {
             return "Image"
         }
         return nil
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 0.4)
+        let headerView: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        headerView.textLabel?.textColor = UIColor.whiteColor()
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -156,6 +162,7 @@ extension AddItemTableViewController : UITextFieldDelegate {
 
 extension AddItemTableViewController : Setup {
     func setup() {
+        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: "texture1"))
         
         if item != nil {
             self.nameTextField.enabled = false

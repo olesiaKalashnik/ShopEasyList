@@ -21,15 +21,25 @@ class RecentsViewController: UIViewController {
         }
     }
     
+    //MARK: - Controller Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: "texture1"))
+        for item in self.navigationItem.rightBarButtonItems! {
+            item.tintColor = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 1)
+        }
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.rowHeight = 65
+        self.tableView.rowHeight = Defaults.UI.recentsFavoritsRowHeight
         self.recentItems = library.items.filter({$0.lastTimeAddedToList != nil})
         self.recentItems = recentItems.sort { (item1, item2) -> Bool in
             item1.lastTimeAddedToList!.compare(item2.lastTimeAddedToList!) == NSComparisonResult.OrderedDescending
         }
     }
     
+    //MARK: - @IBActions
     @IBAction func doneButtonSelected(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }

@@ -19,7 +19,8 @@ class PhotoViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.imagePicker.delegate = self
+        
+        self.setup()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -28,6 +29,7 @@ class PhotoViewController: UIViewController  {
     }
     
     @IBAction func takePhoto(sender: UIBarButtonItem) {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
@@ -69,12 +71,14 @@ extension PhotoViewController : UINavigationControllerDelegate, UIImagePickerCon
 //MARK: - Setup Methods
 extension PhotoViewController : Setup {
     func setup() {
-        //
+        self.imagePicker.delegate = self
+        self.navigationController?.navigationBar.barTintColor = Defaults.UI.blueColor
     }
     
     func setupAppearance() {
-        guard let safeImage = image else { return }
-        self.imageView?.image = safeImage
+        if let safeImage = image {
+            self.imageView?.image = safeImage
+        }
         self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         
     }

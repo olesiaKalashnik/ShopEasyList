@@ -20,14 +20,24 @@ class FavoritesViewController: UIViewController {
         }
     }
     
+    //MARK: - Controller Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: "texture1"))
+        for item in self.navigationItem.rightBarButtonItems! {
+            item.tintColor = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 1)
+        }
+    }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.rowHeight = 65
+        self.tableView.rowHeight = Defaults.UI.recentsFavoritsRowHeight
         self.favoriteItems = library.items.filter({$0.numOfPurchaces > 0})
         self.favoriteItems = favoriteItems.sort { (item1, item2) -> Bool in
             item1.numOfPurchaces > item2.numOfPurchaces}
     }
     
+    //MARK: - @IBActions
     @IBAction func doneButtonSelected(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }

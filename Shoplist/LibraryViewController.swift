@@ -27,13 +27,11 @@ class LibraryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-        //self.setupAppearance()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.setupAppearance()
-        self.tableView.reloadData()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -75,6 +73,12 @@ extension LibraryViewController : UITableViewDataSource {
         return item.category
     }
     
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 0.4)
+        let headerView: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        headerView.textLabel?.textColor = UIColor.whiteColor()
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let items = library.categoryToItemDictionary[library.categoryToItemDictionary.keys.map({$0})[section]] else { return 0 }
         return items.count
@@ -105,7 +109,13 @@ extension LibraryViewController : UITableViewDelegate {
 extension LibraryViewController : Setup {
     func setup() {
         self.navigationItem.title = "Library"
-        self.tabBarController?.setToolbarItems(nil, animated: false)
+        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: "texture1"))
+        for item in self.navigationItem.leftBarButtonItems! {
+            item.tintColor = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 1)
+        }
+        for item in self.navigationItem.rightBarButtonItems! {
+            item.tintColor = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 1)
+        }
     }
     
     func setupAppearance() {
