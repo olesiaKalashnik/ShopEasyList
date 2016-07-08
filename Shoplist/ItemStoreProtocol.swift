@@ -18,7 +18,6 @@ protocol ItemStoreProtocol : class {
     var groupedItemsAsList : [[Item]] { get }
     var itemsInList : [Item] { get }
     func editDetails(item: Item)
-    //var queueForSaving : NSOperationQueue { get set }
 }
 
 extension ItemStoreProtocol {
@@ -59,16 +58,6 @@ extension ItemStoreProtocol {
     var itemsInList : [Item] {
         return self.items.filter{$0.isInList}
     }
-    
-//    var categoryToListItemDictionary : [String: [Item]] {
-//        var dict = [String: [Item]]()
-//        for category in self.itemsInList.map({$0.category}) {
-//            if dict[category] == nil {
-//                dict[category] = self.items.filter { $0.category == category }
-//            }
-//        }
-//        return dict
-//    }
     
     func editDetails(itemToEdit: Item) {
         for item in self.items {

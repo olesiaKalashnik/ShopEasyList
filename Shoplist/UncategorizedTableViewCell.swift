@@ -9,7 +9,7 @@
 import UIKit
 
 class UncategorizedTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var completionCheckbox: CheckboxButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -28,7 +28,6 @@ class UncategorizedTableViewCell: UITableViewCell {
 }
 
 extension UncategorizedTableViewCell : Setup {
-    
     func setup() {
         guard let item = self.libraryItem else { return }
         self.nameLabel?.text = item.name.lowercaseString
@@ -37,6 +36,6 @@ extension UncategorizedTableViewCell : Setup {
     }
     
     func setupAppearance() {
-        
+        //
     }
 }

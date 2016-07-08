@@ -1,6 +1,6 @@
 //
 //  CheckboxButton.swift
-//  Shopping List_v.2.0
+//  Shoplist
 //
 //  Created by Olesia Kalashnik on 6/30/16.
 //  Copyright © 2016 Olesia Kalashnik. All rights reserved.
@@ -14,29 +14,29 @@ import UIKit
 class CheckboxButton: UIButton {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
+        self.setup()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        self.setup()
     }
     
     private var circleLayer = CAShapeLayer()
     private var fillCircleLayer = CAShapeLayer()
     override var selected: Bool {
         didSet {
-            toggleButton()
+            self.toggleCheckbox()
         }
     }
     
-    @IBInspectable var circleLayerColor = UIColor.lightGrayColor().CGColor {
+    var circleLayerColor = UIColor.lightGrayColor().CGColor {
         didSet {
             circleLayer.strokeColor = circleLayerColor
         }
     }
     
-    @IBInspectable var circleFillColor = Defaults.UI.blueSolid.CGColor {
+    var circleFillColor = Defaults.UI.blueSolid.CGColor {
         didSet {
             fillCircleLayer.fillColor = circleFillColor
         }
@@ -60,7 +60,7 @@ class CheckboxButton: UIButton {
         return cFrame
     }
     
-    func toggleButton() {
+    func toggleCheckbox() {
         if self.selected {
             fillCircleLayer.fillColor = circleFillColor
             circleLayer.strokeColor = circleFillColor
@@ -82,8 +82,7 @@ class CheckboxButton: UIButton {
         fillCircleLayer.fillColor = circleFillColor
         fillCircleLayer.strokeColor = circleLayerColor
         layer.addSublayer(fillCircleLayer)
-        
-        toggleButton()
+        toggleCheckbox()
     }
     
     private var circlePath : CGPath {

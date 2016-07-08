@@ -28,6 +28,7 @@ class Defaults {
     static let allCategories = ["None", "Baked Goods", "Beauty & Health", "Beverages", "Canned Goods", "Dairy", "Dressings & Condiments", "Household & Cleaning", "Meat & Fish", "Produce", "Snacks", "Sweets"]
     
     struct UI {
+        static let textureImage = "texture1"
         static let blueSolid = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 1)
         static let blueTransperent = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 0.4)
         static let recentsFavoritsRowHeight = CGFloat(55.0)

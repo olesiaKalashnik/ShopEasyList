@@ -57,7 +57,7 @@ class AddItemTableViewController: UITableViewController {
                 item!.isCompleted = false
                 item!.numOfPurchaces = 0
                 item!.detailsText = detailsTextField.text
-                item!.image = self.image
+                item!.image = self.imageView.image
                 
                 library.editDetails(item!)
                 library.add(item!)
@@ -162,7 +162,7 @@ extension AddItemTableViewController : UITextFieldDelegate {
 
 extension AddItemTableViewController : Setup {
     func setup() {
-        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: "texture1"))
+        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: Defaults.UI.textureImage))
         for item in self.navigationItem.leftBarButtonItems! {
             item.tintColor = Defaults.UI.blueSolid
         }
@@ -180,7 +180,6 @@ extension AddItemTableViewController : Setup {
             }
             
             self.category = item?.category
-            
             if self.rememberedEditedImage != nil {
                 self.imageView?.image = self.rememberedEditedImage
             } else {

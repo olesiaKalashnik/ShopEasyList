@@ -13,7 +13,6 @@ class RecentsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var library = Library.shared
-    
     var recentItems = Library.shared.items.filter({$0.lastTimeAddedToList != nil})
         {
         didSet {
@@ -21,10 +20,18 @@ class RecentsViewController: UIViewController {
         }
     }
     
+    func setupAppearance() {
+        self.tableView.rowHeight = Defaults.UI.recentsFavoritsRowHeight
+        self.recentItems = library.items.filter({$0.lastTimeAddedToList != nil})
+        self.recentItems = recentItems.sort { (item1, item2) -> Bool in
+            item1.lastTimeAddedToList!.compare(item2.lastTimeAddedToList!) == NSComparisonResult.OrderedDescending
+        }
+    }
+    
     //MARK: - Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: "texture1"))
+        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: Defaults.UI.textureImage))
         for item in self.navigationItem.rightBarButtonItems! {
             item.tintColor = Defaults.UI.blueSolid
         }
@@ -32,11 +39,7 @@ class RecentsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.rowHeight = Defaults.UI.recentsFavoritsRowHeight
-        self.recentItems = library.items.filter({$0.lastTimeAddedToList != nil})
-        self.recentItems = recentItems.sort { (item1, item2) -> Bool in
-            item1.lastTimeAddedToList!.compare(item2.lastTimeAddedToList!) == NSComparisonResult.OrderedDescending
-        }
+        self.setupAppearance()
     }
     
     //MARK: - @IBActions

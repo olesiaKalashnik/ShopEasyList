@@ -12,14 +12,12 @@ class LibraryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var completionCheckbox: CheckboxButton!
     @IBOutlet weak var nameLabel: UILabel!
-    
     @IBOutlet weak var itemImageView: UIImageView!
     
     
     var libraryItem : Item? {
         didSet {
             self.setup()
-            self.setupAppearance()
         }
     }
     
@@ -40,6 +38,6 @@ extension LibraryTableViewCell : Setup {
     }
     
     func setupAppearance() {
-        self.imageView?.layer.cornerRadius = 25
+        //
     }
 }

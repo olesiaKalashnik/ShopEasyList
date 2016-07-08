@@ -37,6 +37,6 @@ extension ListItemWithDetailsTableViewCell : Setup {
     }
     
     func setupAppearance() {
-        
+        //
     }
 }

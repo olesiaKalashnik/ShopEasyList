@@ -31,6 +31,7 @@ class LibraryViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        //if Library.queueForSaving.
         self.setupAppearance()
         self.tableView.reloadData()
     }
@@ -38,7 +39,7 @@ class LibraryViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.currentList += updateListWithSelectedItems()
-        library.saveObjects()
+        //library.saveObjects()
     }
     
     @IBAction func doneButtonSelected(sender: UIBarButtonItem) {
@@ -116,7 +117,7 @@ extension LibraryViewController : UITableViewDelegate {
 extension LibraryViewController : Setup {
     func setup() {
         self.navigationItem.title = "Library"
-        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: "texture1"))
+        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: Defaults.UI.textureImage))
         for item in self.navigationItem.leftBarButtonItems! {
             item.tintColor = Defaults.UI.blueSolid
         }

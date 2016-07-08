@@ -8,10 +8,9 @@
 
 import UIKit
 
-class ListViewController: UIViewController {//, ItemStoreProtocol {
+class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var hideCompletedOutlet: UIBarButtonItem!
     
     var items = Library.shared.itemsInList
@@ -96,7 +95,7 @@ class ListViewController: UIViewController {//, ItemStoreProtocol {
 extension ListViewController : UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return Set(self.items.map({$0.category})).count //Set(self.categories).count
+        return Set(self.items.map({$0.category})).count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -144,7 +143,7 @@ extension ListViewController : Setup {
     func setup() {
         self.hideCompletedOutlet.enabled = self.items.count > 0
         self.navigationItem.title = "List"
-        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: "texture1"))
+        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: Defaults.UI.textureImage))
         for item in self.navigationItem.leftBarButtonItems! {
             item.tintColor = Defaults.UI.blueSolid
         }

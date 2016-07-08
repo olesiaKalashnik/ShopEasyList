@@ -14,12 +14,11 @@ class PhotoViewController: UIViewController  {
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
     let imagePicker = UIImagePickerController()
-    
     var image : UIImage?
     
+    //MARK: - Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.setup()
     }
     
@@ -48,13 +47,17 @@ extension PhotoViewController : UINavigationControllerDelegate, UIImagePickerCon
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            self.image = image
+            guard let data = UIImageJPEGRepresentation(image, 0.1) else {
+                self.dismissViewControllerAnimated(true, completion: nil)
+                return }
+            self.image = UIImage(data: data)
+            //self.image = image
             self.imageView.image = self.image
             if let navController = presentingViewController as? UINavigationController {
                 if let addVC = navController.viewControllers.first as? AddItemTableViewController {
                     
-                    addVC.image = image
-                    addVC.imageView.image = image
+                    addVC.image = self.image
+                    addVC.imageView.image = self.image
                 }
             }
         }
@@ -62,9 +65,7 @@ extension PhotoViewController : UINavigationControllerDelegate, UIImagePickerCon
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        
         self.dismissViewControllerAnimated(true, completion: nil)
-        
     }
 }
 
@@ -72,14 +73,16 @@ extension PhotoViewController : UINavigationControllerDelegate, UIImagePickerCon
 extension PhotoViewController : Setup {
     func setup() {
         self.imagePicker.delegate = self
-        self.navigationController?.navigationBar.barTintColor = Defaults.UI.blueSolid //Defaults.UI.blueColor
+        self.navigationController?.navigationBar.barTintColor = Defaults.UI.blueSolid
     }
     
     func setupAppearance() {
+        if let existingImage = self.imageView?.image {
+            self.image = existingImage
+        }
         if let safeImage = image {
             self.imageView?.image = safeImage
         }
         self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
-        
     }
 }

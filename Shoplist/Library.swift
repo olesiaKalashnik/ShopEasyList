@@ -10,7 +10,6 @@ import UIKit
 
 class Library: Savable, ItemStoreProtocol {
     typealias Object = Item
-    //var queueForSaving: NSOperationQueue = NSOperationQueue()
     
     var path = Item.ArchiveURL.path!
     
