@@ -36,7 +36,7 @@ class CheckboxButton: UIButton {
         }
     }
     
-    @IBInspectable var circleFillColor = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 1).CGColor { //UIColor.blueColor().CGColor {
+    @IBInspectable var circleFillColor = Defaults.UI.blueSolid.CGColor {
         didSet {
             fillCircleLayer.fillColor = circleFillColor
         }

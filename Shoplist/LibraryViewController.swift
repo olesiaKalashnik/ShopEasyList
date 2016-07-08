@@ -32,6 +32,7 @@ class LibraryViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.setupAppearance()
+        self.tableView.reloadData()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -49,7 +50,7 @@ class LibraryViewController: UIViewController {
         if self.currentList.count > 0 {
             var itemsToBeAdded = [Item]()
             for item in selectedItems {
-                if !self.currentList.contains({($0.category == item.category) && ($0.name == item.name)}) {
+                if !self.currentList.contains({($0.category == item.category) && ($0.name.lowercaseString == item.name.lowercaseString)}) {
                     itemsToBeAdded.append(item)
                 }
             }
@@ -74,7 +75,7 @@ extension LibraryViewController : UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 0.4)
+        view.tintColor = Defaults.UI.blueTransperent
         let headerView: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         headerView.textLabel?.textColor = UIColor.whiteColor()
     }
@@ -85,9 +86,15 @@ extension LibraryViewController : UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
         let cell = tableView.dequeueReusableCellWithIdentifier(LibraryTableViewCell.id, forIndexPath: indexPath) as! LibraryTableViewCell
-        var allItemsBySection = library.groupedItemsAsList
-        cell.libraryItem = allItemsBySection[indexPath.section][indexPath.row]
+        let item = library.groupedItemsAsList[indexPath.section][indexPath.row]
+        if item.image != nil {
+            self.tableView.rowHeight = Defaults.UI.libraryCellWithImageHeight
+        } else {
+            self.tableView.rowHeight = UITableViewAutomaticDimension
+        }
+        cell.libraryItem = item
         return cell
     }
 }
@@ -111,10 +118,10 @@ extension LibraryViewController : Setup {
         self.navigationItem.title = "Library"
         self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: "texture1"))
         for item in self.navigationItem.leftBarButtonItems! {
-            item.tintColor = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 1)
+            item.tintColor = Defaults.UI.blueSolid
         }
         for item in self.navigationItem.rightBarButtonItems! {
-            item.tintColor = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 1)
+            item.tintColor = Defaults.UI.blueSolid
         }
     }
     
@@ -124,7 +131,7 @@ extension LibraryViewController : Setup {
             self.currentList += updateListWithSelectedItems()
             for item in library.items {
                 if self.currentList.count > 0 {
-                    item.isInList = self.currentList.contains({($0.category == item.category) && ($0.name == item.name)})
+                    item.isInList = self.currentList.contains({($0.category == item.category) && ($0.name.lowercaseString == item.name.lowercaseString)})
                 }
             }
         }

@@ -17,9 +17,9 @@ protocol Savable : class {
 
 extension Savable {
     func saveObjects() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(items, toFile: path)
-        if !isSuccessfulSave {
-            print("Failed to save items...")
+            let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(self.items, toFile: self.path)
+            if !isSuccessfulSave {
+                print("Failed to save items...")
         }
     }
 }

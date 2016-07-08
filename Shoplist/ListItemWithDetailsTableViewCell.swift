@@ -30,7 +30,7 @@ class ListItemWithDetailsTableViewCell: UITableViewCell {
 extension ListItemWithDetailsTableViewCell : Setup {
     func setup() {
         guard let item = self.listItem else { return }
-        self.nameLabel?.text = item.name
+        self.nameLabel?.text = item.name.lowercaseString
         self.completionButton.selected = item.isCompleted
         guard let detail = item.detailsText else { return }
         self.detailsLabel?.text = detail

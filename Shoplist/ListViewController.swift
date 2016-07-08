@@ -8,14 +8,9 @@
 
 import UIKit
 
-class ListViewController: UIViewController, ItemStoreProtocol {
+class ListViewController: UIViewController {//, ItemStoreProtocol {
     
     @IBOutlet weak var tableView: UITableView!
-    
-    private struct TableViewConstants {
-        static let detailsRowHeight = CGFloat(55.0)
-        static let noDetailsRowHeight = CGFloat(44.0)
-    }
     
     @IBOutlet weak var hideCompletedOutlet: UIBarButtonItem!
     
@@ -27,7 +22,6 @@ class ListViewController: UIViewController, ItemStoreProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-        //        self.tableView.registerNib(UINib(nibName: "NoDetailsCell", bundle: nil), forCellReuseIdentifier: NoDetailsListItemTableViewCell.id)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -94,17 +88,6 @@ class ListViewController: UIViewController, ItemStoreProtocol {
                     addVC.item = allItemsBySection[indexPath.section][indexPath.row]
                 }
                 
-                
-                //                if sender is NoDetailsListItemTableViewCell {
-                //                    print("Sender is NoDetailsListItemTableViewCell")
-                
-                //if let indexPath = self.tableView.indexPathForCell(sender as! NoDetailsListItemTableViewCell) {
-                
-                //var allItemsBySection = Library.shared.groupedListItems
-                //addVC.item = selectedItemWithoutDetails //allItemsBySection[indexPath.section][indexPath.row]
-                //}
-                
-                //} else {
             }
         }
     }
@@ -113,7 +96,7 @@ class ListViewController: UIViewController, ItemStoreProtocol {
 extension ListViewController : UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return Set(self.categories).count
+        return Set(self.items.map({$0.category})).count //Set(self.categories).count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -122,7 +105,7 @@ extension ListViewController : UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 0.4)
+        view.tintColor = Defaults.UI.blueTransperent
         let headerView: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         headerView.textLabel?.textColor = UIColor.whiteColor()
     }
@@ -134,22 +117,15 @@ extension ListViewController : UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var allItemsBySection = itemsGrouped()
         let item = allItemsBySection[indexPath.section][indexPath.row]
-        //        if item.detailsText != "" {
-        //
+        if item.detailsText != "" {
+            self.tableView.rowHeight = Defaults.UI.detailsRowHeight
+        } else {
+            self.tableView.rowHeight = Defaults.UI.noDetailsRowHeight
+        }
         let cell = tableView.dequeueReusableCellWithIdentifier(ListItemWithDetailsTableViewCell.id, forIndexPath: indexPath) as! ListItemWithDetailsTableViewCell
         cell.listItem = item
         
-        self.tableView.rowHeight = TableViewConstants.detailsRowHeight
-        
         return cell
-        //
-        //        } else {
-        //        let cell = tableView.dequeueReusableCellWithIdentifier(NoDetailsListItemTableViewCell.id, forIndexPath: indexPath) as! NoDetailsListItemTableViewCell
-        //        cell.listItem = item
-        //        self.tableView.rowHeight = TableViewConstants.noDetailsRowHeight
-        //
-        //        return cell
-        //}
     }
 }
 
@@ -158,28 +134,6 @@ extension ListViewController : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.DetailDisclosureButton
     }
-    
-    //    func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-    //        var allItemsBySection = itemsGrouped()
-    //        let item = allItemsBySection[indexPath.section][indexPath.row]
-    //        print("accessoryButtonTappedForRowWithIndexPath: \(item.name), \(item.detailsText)")
-    //
-    //        if item.detailsText != "" {
-    //            selectedItemWithDetails = item
-    //            selectedItemWithoutDetails = nil
-    //            performSegueWithIdentifier(AddItemTableViewController.id, sender: ListItemWithDetailsTableViewCell(style: .Default, reuseIdentifier: AddItemTableViewController.id))
-    //            self.tableView.reloadData()
-    //        } else {
-    //            if item.detailsText == "" {
-    //                selectedItemWithoutDetails = item
-    //                selectedItemWithDetails = nil
-    //
-    //                performSegueWithIdentifier(AddItemTableViewController.id, sender: NoDetailsListItemTableViewCell(style: .Default, reuseIdentifier: AddItemTableViewController.id))
-    //                self.tableView.reloadData()
-    //
-    //            }
-    //        }
-    //    }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
@@ -192,10 +146,10 @@ extension ListViewController : Setup {
         self.navigationItem.title = "List"
         self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: "texture1"))
         for item in self.navigationItem.leftBarButtonItems! {
-            item.tintColor = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 1)
+            item.tintColor = Defaults.UI.blueSolid
         }
         for item in self.navigationItem.rightBarButtonItems! {
-            item.tintColor = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 1)
+            item.tintColor = Defaults.UI.blueSolid
         }
     }
     

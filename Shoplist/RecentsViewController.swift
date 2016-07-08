@@ -26,7 +26,7 @@ class RecentsViewController: UIViewController {
         super.viewDidLoad()
         self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: "texture1"))
         for item in self.navigationItem.rightBarButtonItems! {
-            item.tintColor = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 1)
+            item.tintColor = Defaults.UI.blueSolid
         }
     }
     

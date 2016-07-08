@@ -99,7 +99,7 @@ class AddItemTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UIColor(red: 50/255, green: 170/255, blue: 240/255, alpha: 0.4)
+        view.tintColor = Defaults.UI.blueTransperent
         let headerView: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         headerView.textLabel?.textColor = UIColor.whiteColor()
     }
@@ -163,6 +163,12 @@ extension AddItemTableViewController : UITextFieldDelegate {
 extension AddItemTableViewController : Setup {
     func setup() {
         self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: "texture1"))
+        for item in self.navigationItem.leftBarButtonItems! {
+            item.tintColor = Defaults.UI.blueSolid
+        }
+        for item in self.navigationItem.rightBarButtonItems! {
+            item.tintColor = Defaults.UI.blueSolid
+        }
         
         if item != nil {
             self.nameTextField.enabled = false

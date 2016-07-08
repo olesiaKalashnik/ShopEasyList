@@ -72,7 +72,7 @@ extension PhotoViewController : UINavigationControllerDelegate, UIImagePickerCon
 extension PhotoViewController : Setup {
     func setup() {
         self.imagePicker.delegate = self
-        self.navigationController?.navigationBar.barTintColor = Defaults.UI.blueColor
+        self.navigationController?.navigationBar.barTintColor = Defaults.UI.blueSolid //Defaults.UI.blueColor
     }
     
     func setupAppearance() {
