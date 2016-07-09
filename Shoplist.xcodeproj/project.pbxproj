@@ -23,7 +23,6 @@
 		0E9D72741D25C9B900BD9EB6 /* LibraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D72731D25C9B900BD9EB6 /* LibraryTableViewCell.swift */; };
 		0E9D72761D25CE0C00BD9EB6 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D72751D25CE0C00BD9EB6 /* Defaults.swift */; };
 		0E9D727C1D26DC3000BD9EB6 /* Savable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D727B1D26DC3000BD9EB6 /* Savable.swift */; };
-		0E9D72801D26EC1900BD9EB6 /* AddNewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D727F1D26EC1900BD9EB6 /* AddNewItemViewController.swift */; };
 		0E9D72821D2701CF00BD9EB6 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D72811D2701CF00BD9EB6 /* PhotoViewController.swift */; };
 		0E9D72841D27099D00BD9EB6 /* ItemStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D72831D27099D00BD9EB6 /* ItemStoreProtocol.swift */; };
 		0E9D72881D2B232200BD9EB6 /* AddItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D72871D2B232200BD9EB6 /* AddItemTableViewController.swift */; };
@@ -72,7 +71,6 @@
 		0E9D72731D25C9B900BD9EB6 /* LibraryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTableViewCell.swift; sourceTree = "<group>"; };
 		0E9D72751D25CE0C00BD9EB6 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		0E9D727B1D26DC3000BD9EB6 /* Savable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Savable.swift; sourceTree = "<group>"; };
-		0E9D727F1D26EC1900BD9EB6 /* AddNewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddNewItemViewController.swift; path = Shoplist/AddNewItemViewController.swift; sourceTree = "<group>"; };
 		0E9D72811D2701CF00BD9EB6 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		0E9D72831D27099D00BD9EB6 /* ItemStoreProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemStoreProtocol.swift; sourceTree = "<group>"; };
 		0E9D72871D2B232200BD9EB6 /* AddItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemTableViewController.swift; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 				0E9D71E91D209BCC00BD9EB6 /* ShoplistTests */,
 				0E9D71F41D209BCC00BD9EB6 /* ShoplistUITests */,
 				0E9D71D31D209BCC00BD9EB6 /* Products */,
-				0E9D727F1D26EC1900BD9EB6 /* AddNewItemViewController.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -370,7 +367,6 @@
 				0E9D71D61D209BCC00BD9EB6 /* AppDelegate.swift in Sources */,
 				0E9D720F1D20A10500BD9EB6 /* Library.swift in Sources */,
 				0E9D72111D20A4D500BD9EB6 /* Setup.swift in Sources */,
-				0E9D72801D26EC1900BD9EB6 /* AddNewItemViewController.swift in Sources */,
 				0E9D72721D25C14D00BD9EB6 /* LibraryViewController.swift in Sources */,
 				0E9D72161D20A94600BD9EB6 /* ListItemWithDetailsTableViewCell.swift in Sources */,
 			);
