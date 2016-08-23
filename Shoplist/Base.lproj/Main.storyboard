@@ -100,7 +100,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="List" id="hm6-99-Pwt">
-                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="CZg-v3-DQN">
+                        <barButtonItem key="leftBarButtonItem" title="Hide" id="CZg-v3-DQN">
                             <connections>
                                 <action selector="hideCompleted:" destination="BYZ-38-t0r" id="wP3-Mk-tg2"/>
                             </connections>
@@ -135,6 +135,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YsY-n1-cgW">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.1960784314" green="0.66666666669999997" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LibraryTableViewCell" rowHeight="91" id="eBG-Vv-4fi" customClass="LibraryTableViewCell" customModule="Shoplist" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="91"/>
@@ -187,6 +188,7 @@
                                             <outlet property="completionCheckbox" destination="fbT-G8-Dc2" id="LPi-cK-894"/>
                                             <outlet property="itemImageView" destination="0lK-M7-8nH" id="F8I-LP-B2s"/>
                                             <outlet property="nameLabel" destination="0XM-P5-9et" id="OWr-bk-Miv"/>
+                                            <segue destination="I8s-0j-hZQ" kind="presentation" identifier="AddItemTableViewController" trigger="accessoryAction" modalTransitionStyle="flipHorizontal" id="nIx-Ip-v3X"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -329,7 +331,7 @@
         <scene sceneID="hVF-ao-Emd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnSwipe="YES" id="ZS0-7Y-hJg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Library" image="bookmark" selectedImage="bookmark" id="R1o-QW-lhN"/>
+                    <tabBarItem key="tabBarItem" title="Library" image="bookmarks50" selectedImage="bookmarksFilled50" id="R1o-QW-lhN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="shY-1P-uLH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -363,6 +365,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cKd-8Q-4WZ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.1960784314" green="0.66666666669999997" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UncategorizedTableViewCell" rowHeight="65" id="kuh-lb-fEN" customClass="UncategorizedTableViewCell" customModule="Shoplist" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="65"/>
@@ -475,6 +478,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.1960784314" green="0.66666666669999997" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Item" id="829-IN-UCj">
                                 <cells>
@@ -973,6 +977,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CnE-ug-zko">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.1960784314" green="0.66666666669999997" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UncategorizedTableViewCell" rowHeight="65" id="kqo-0b-M5a" customClass="UncategorizedTableViewCell" customModule="Shoplist" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="65"/>
@@ -1111,9 +1116,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bookmark" width="25" height="25"/>
+        <image name="bookmarks50" width="25" height="25"/>
+        <image name="bookmarksFilled50" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zpH-6p-h5t"/>
+        <segue reference="nIx-Ip-v3X"/>
     </inferredMetricsTieBreakers>
 </document>

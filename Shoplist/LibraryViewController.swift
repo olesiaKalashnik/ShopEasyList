@@ -58,6 +58,22 @@ class LibraryViewController: UIViewController {
             return selectedItems
         }
     }
+    //MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destination = segue.destinationViewController as UIViewController
+        if segue.identifier == AddItemTableViewController.id {
+            if let navController = destination as? UINavigationController {
+                guard let addVC = navController.visibleViewController as? AddItemTableViewController else { return }
+                
+                if let indexPath = self.tableView.indexPathForCell(sender as!LibraryTableViewCell) {
+                    let allItemsBySection = library.groupedItemsAsList
+                    addVC.item = allItemsBySection[indexPath.section][indexPath.row]
+                }
+                
+            }
+        }
+        
+    }
     
 }
 
@@ -85,7 +101,7 @@ extension LibraryViewController : UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
+        
         let cell = tableView.dequeueReusableCellWithIdentifier(LibraryTableViewCell.id, forIndexPath: indexPath) as! LibraryTableViewCell
         let item = library.groupedItemsAsList[indexPath.section][indexPath.row]
         if item.image != nil {
@@ -100,6 +116,15 @@ extension LibraryViewController : UITableViewDataSource {
 
 //MARK: - TableView Delegate Methods
 extension LibraryViewController : UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.DetailDisclosureButton
+    }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
+    }
+    
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let librsaryItemsGrouped = library.groupedItemsAsList
@@ -125,6 +150,10 @@ extension LibraryViewController : Setup {
     }
     
     func setupAppearance() {
+        for cell in self.tableView.visibleCells {
+            cell.accessoryType = UITableViewCellAccessoryType.None
+        }
+        
         if let list = listVC?.items {
             self.currentList = list
             self.currentList += updateListWithSelectedItems()
