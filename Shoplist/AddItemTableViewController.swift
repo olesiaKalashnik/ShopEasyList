@@ -19,6 +19,8 @@ class AddItemTableViewController: UITableViewController {
     var image : UIImage? {
         didSet {
             self.rememberedEditedImage = image
+            self.navigationItem.rightBarButtonItem?.title = "Save"
+            
         }
     }
     
@@ -46,25 +48,25 @@ class AddItemTableViewController: UITableViewController {
     
     //MARK: @IBActions
     @IBAction func saveNewItem(sender: UIBarButtonItem) {
-        if let newItem = self.nameTextField.text {
-            if newItem != "" {
-                if let selectedCategory = self.category {
-                    item = Item(name: newItem, category: selectedCategory)
-                } else {
-                    item = Item(name: newItem, category: "None")
+        if sender.title == "Save" {
+            if let newItem = self.nameTextField.text {
+                if newItem != "" {
+                    if let selectedCategory = self.category {
+                        item = Item(name: newItem, category: selectedCategory)
+                    } else {
+                        item = Item(name: newItem, category: "None")
+                    }
+                    item!.isInList = true
+                    item!.isCompleted = false
+                    item!.numOfPurchaces = 0
+                    item!.detailsText = detailsTextField.text
+                    item!.image = self.imageView.image
+                    library.editDetails(item!)
+                    library.add(item!)
+                    library.saveObjects()
                 }
-                item!.isInList = true
-                item!.isCompleted = false
-                item!.numOfPurchaces = 0
-                item!.detailsText = detailsTextField.text
-                item!.image = self.imageView.image
-                
-                library.editDetails(item!)
-                library.add(item!)
-                library.saveObjects()
             }
         }
-        
         self.nameTextField.text = nil
         self.detailsTextField.text = nil
         self.dismissViewControllerAnimated(true, completion: nil)
