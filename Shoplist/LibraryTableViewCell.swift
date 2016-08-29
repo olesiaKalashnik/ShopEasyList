@@ -35,9 +35,10 @@ extension LibraryTableViewCell : Setup {
         self.nameLabel?.text = item.name.lowercaseString
         self.completionCheckbox.selected = item.isInList
         itemImageView.image = item.image
+        self.itemImageView?.layer.cornerRadius = 5.0
+
     }
     
     func setupAppearance() {
-        //
     }
 }
