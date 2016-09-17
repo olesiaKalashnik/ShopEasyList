@@ -22,21 +22,21 @@ class CheckboxButton: UIButton {
         self.setup()
     }
     
-    private var circleLayer = CAShapeLayer()
-    private var fillCircleLayer = CAShapeLayer()
-    override var selected: Bool {
+    fileprivate var circleLayer = CAShapeLayer()
+    fileprivate var fillCircleLayer = CAShapeLayer()
+    override var isSelected: Bool {
         didSet {
             self.toggleCheckbox()
         }
     }
     
-    var circleLayerColor = UIColor.lightGrayColor().CGColor {
+    var circleLayerColor = UIColor.lightGray.cgColor {
         didSet {
             circleLayer.strokeColor = circleLayerColor
         }
     }
     
-    var circleFillColor = Defaults.UI.blueSolid.CGColor {
+    var circleFillColor = Defaults.UI.blueSolid.cgColor {
         didSet {
             fillCircleLayer.fillColor = circleFillColor
         }
@@ -53,7 +53,7 @@ class CheckboxButton: UIButton {
         }
     }
     
-    private func circleFrame() -> CGRect {
+    fileprivate func circleFrame() -> CGRect {
         var cFrame = CGRect(x: 0.0, y: 0.0, width: circleRadius*2, height: circleRadius*2)
         cFrame.origin.x = CGFloat(8.0) + circleLayer.lineWidth
         cFrame.origin.y = bounds.height/2 - cFrame.height/2
@@ -61,11 +61,11 @@ class CheckboxButton: UIButton {
     }
     
     func toggleCheckbox() {
-        if self.selected {
+        if self.isSelected {
             fillCircleLayer.fillColor = circleFillColor
             circleLayer.strokeColor = circleFillColor
         } else {
-            fillCircleLayer.fillColor = UIColor.clearColor().CGColor
+            fillCircleLayer.fillColor = UIColor.clear.cgColor
             circleLayer.strokeColor = circleLayerColor
         }
     }
@@ -73,7 +73,7 @@ class CheckboxButton: UIButton {
     func setup() {
         circleLayer.frame = bounds
         circleLayer.lineWidth = 1.0
-        circleLayer.fillColor = UIColor.clearColor().CGColor
+        circleLayer.fillColor = UIColor.clear.cgColor
         circleLayer.strokeColor = circleLayerColor
         layer.addSublayer(circleLayer)
         
@@ -85,15 +85,15 @@ class CheckboxButton: UIButton {
         toggleCheckbox()
     }
     
-    private var circlePath : CGPath {
+    fileprivate var circlePath : CGPath {
         get {
-            return UIBezierPath(ovalInRect: circleFrame()).CGPath
+            return UIBezierPath(ovalIn: circleFrame()).cgPath
         }
     }
     
-    private var fillCirclePath : CGPath {
+    fileprivate var fillCirclePath : CGPath {
         get {
-            return UIBezierPath(ovalInRect: CGRectInset(circleFrame(), 2.0, 2.0)).CGPath
+            return UIBezierPath(ovalIn: circleFrame().insetBy(dx: 2.0, dy: 2.0)).cgPath
         }
     }
     

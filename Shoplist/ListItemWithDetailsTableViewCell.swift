@@ -20,18 +20,18 @@ class ListItemWithDetailsTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func completionChecked(sender: CheckboxButton) {
-        completionButton.selected = !completionButton.selected
+    @IBAction func completionChecked(_ sender: CheckboxButton) {
+        completionButton.isSelected = !completionButton.isSelected
         guard let item = self.listItem else { return }
-        item.isCompleted = sender.selected
+        item.isCompleted = sender.isSelected
     }
 }
 
 extension ListItemWithDetailsTableViewCell : Setup {
     func setup() {
         guard let item = self.listItem else { return }
-        self.nameLabel?.text = item.name.lowercaseString
-        self.completionButton.selected = item.isCompleted
+        self.nameLabel?.text = item.name.lowercased()
+        self.completionButton.isSelected = item.isCompleted
         guard let detail = item.detailsText else { return }
         self.detailsLabel?.text = detail
     }

@@ -21,9 +21,9 @@ class LibraryTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func completionChecked(sender: CheckboxButton) {
-        sender.selected = !sender.selected
-        libraryItem?.isInList = sender.selected
+    @IBAction func completionChecked(_ sender: CheckboxButton) {
+        sender.isSelected = !sender.isSelected
+        libraryItem?.isInList = sender.isSelected
         libraryItem?.isCompleted = false
     }
 }
@@ -32,8 +32,8 @@ extension LibraryTableViewCell : Setup {
     
     func setup() {
         guard let item = self.libraryItem else { return }
-        self.nameLabel?.text = item.name.lowercaseString
-        self.completionCheckbox.selected = item.isInList
+        self.nameLabel?.text = item.name.lowercased()
+        self.completionCheckbox.isSelected = item.isInList
         itemImageView.image = item.image
         self.itemImageView?.layer.cornerRadius = 5.0
 

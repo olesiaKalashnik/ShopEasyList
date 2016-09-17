@@ -16,6 +16,6 @@ protocol Setup {
 
 extension Setup {
     static var id : String {
-        return String(self)
+        return String(describing: self)
     }
 }

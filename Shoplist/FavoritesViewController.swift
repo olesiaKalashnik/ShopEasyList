@@ -21,7 +21,7 @@ class FavoritesViewController: UIViewController {
     func setupAppearance() {
         self.tableView.rowHeight = Defaults.UI.recentsFavoritsRowHeight
         self.favoriteItems = library.items.filter({$0.numOfPurchaces > 0})
-        self.favoriteItems = favoriteItems.sort { (item1, item2) -> Bool in
+        self.favoriteItems = favoriteItems.sorted { (item1, item2) -> Bool in
             item1.numOfPurchaces > item2.numOfPurchaces
         }
     }
@@ -29,33 +29,33 @@ class FavoritesViewController: UIViewController {
     //MARK: - Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: Defaults.UI.textureImage))
+        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteralResourceName: Defaults.UI.textureImage))
         for item in self.navigationItem.rightBarButtonItems! {
             item.tintColor = Defaults.UI.blueSolid
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupAppearance()
     }
     
     //MARK: - @IBActions
-    @IBAction func doneButtonSelected(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func doneButtonSelected(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
 //MARK: - TableView DataSource Methods
 extension FavoritesViewController : UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.favoriteItems.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(UncategorizedTableViewCell.id, forIndexPath: indexPath) as! UncategorizedTableViewCell
-        cell.libraryItem = self.favoriteItems[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: UncategorizedTableViewCell.id, for: indexPath) as! UncategorizedTableViewCell
+        cell.libraryItem = self.favoriteItems[(indexPath as NSIndexPath).row]
         return cell
     }
 }

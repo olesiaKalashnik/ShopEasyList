@@ -22,33 +22,33 @@ class PhotoViewController: UIViewController  {
         self.setup()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupAppearance()
     }
     
-    @IBAction func takePhoto(sender: UIBarButtonItem) {
-        self.imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+    @IBAction func takePhoto(_ sender: UIBarButtonItem) {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+        self.present(imagePicker, animated: true, completion: nil)
     }
     
-    @IBAction func chooseFromAlbum(sender: UIBarButtonItem) {
-        self.imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        presentViewController(imagePicker, animated: true, completion: nil)
+    @IBAction func chooseFromAlbum(_ sender: UIBarButtonItem) {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        present(imagePicker, animated: true, completion: nil)
     }
     
-    @IBAction func cancelImagePicker(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelImagePicker(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
 // UIImagePickerControllerDelegate Methods
 extension PhotoViewController : UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             guard let data = UIImageJPEGRepresentation(image, 0.1) else {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
                 return }
             self.image = UIImage(data: data)
             //self.image = image
@@ -61,11 +61,11 @@ extension PhotoViewController : UINavigationControllerDelegate, UIImagePickerCon
                 }
             }
         }
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -83,6 +83,6 @@ extension PhotoViewController : Setup {
         if let safeImage = image {
             self.imageView?.image = safeImage
         }
-        self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        self.cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)
     }
 }

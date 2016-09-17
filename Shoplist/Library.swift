@@ -11,11 +11,11 @@ import UIKit
 class Library: Savable, ItemStoreProtocol {
     typealias Object = Item
     
-    var path = Item.ArchiveURL.path!
+    var path = Item.ArchiveURL.path
     
     static let shared = Library()
-    private init() {
-        self.items = NSKeyedUnarchiver.unarchiveObjectWithFile(self.path) as? [Object] ?? [Object]()
+    fileprivate init() {
+        self.items = NSKeyedUnarchiver.unarchiveObject(withFile: self.path) as? [Object] ?? [Object]()
     }
     
     var items : [Object]
@@ -24,7 +24,7 @@ class Library: Savable, ItemStoreProtocol {
         self.items = items
     }
     
-    func addLibraryItem(item: Item) {
+    func addLibraryItem(_ item: Item) {
         Library.shared.items.append(item)
     }
     

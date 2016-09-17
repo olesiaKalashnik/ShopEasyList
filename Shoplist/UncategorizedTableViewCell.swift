@@ -20,9 +20,9 @@ class UncategorizedTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func completionChecked(sender: CheckboxButton) {
-        sender.selected = !sender.selected
-        libraryItem?.isInList = sender.selected
+    @IBAction func completionChecked(_ sender: CheckboxButton) {
+        sender.isSelected = !sender.isSelected
+        libraryItem?.isInList = sender.isSelected
         libraryItem?.isCompleted = false
     }
 }
@@ -30,9 +30,9 @@ class UncategorizedTableViewCell: UITableViewCell {
 extension UncategorizedTableViewCell : Setup {
     func setup() {
         guard let item = self.libraryItem else { return }
-        self.nameLabel?.text = item.name.lowercaseString
+        self.nameLabel?.text = item.name.lowercased()
         self.categoryLabel?.text = item.category
-        self.completionCheckbox.selected = item.isInList
+        self.completionCheckbox.isSelected = item.isInList
     }
     
     func setupAppearance() {

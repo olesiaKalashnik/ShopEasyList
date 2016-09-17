@@ -24,11 +24,11 @@ class AddItemTableViewController: UITableViewController {
         }
     }
     
-    private var category : String?
+    fileprivate var category : String?
     @IBOutlet weak var imageView: UIImageView!
     
-    private var rememberedEditedDetailsText : String?
-    private var rememberedEditedImage : UIImage?
+    fileprivate var rememberedEditedDetailsText : String?
+    fileprivate var rememberedEditedImage : UIImage?
     
     //MARK: Controller Lifecycle
     override func viewDidLoad() {
@@ -36,18 +36,18 @@ class AddItemTableViewController: UITableViewController {
         self.setupAppearance()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setup()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.rememberedEditedDetailsText = self.detailsTextField.text
     }
     
     //MARK: @IBActions
-    @IBAction func saveNewItem(sender: UIBarButtonItem) {
+    @IBAction func saveNewItem(_ sender: UIBarButtonItem) {
         if sender.title == "Save" {
             if let newItem = self.nameTextField.text {
                 if newItem != "" {
@@ -69,29 +69,29 @@ class AddItemTableViewController: UITableViewController {
         }
         self.nameTextField.text = nil
         self.detailsTextField.text = nil
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     
-    @IBAction func Cancel(sender: UIBarButtonItem) {
+    @IBAction func Cancel(_ sender: UIBarButtonItem) {
         self.rememberedEditedDetailsText = nil
         self.rememberedEditedImage = nil
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - TableView DataSource Methods
-    private struct TableViewConstants {
+    fileprivate struct TableViewConstants {
         static let numberOfSections = 3
         static let rowsInSectionOne = 2
         static let rowsInSectionTwo = 12
         static let rowsInSectionThree = 1
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return TableViewConstants.numberOfSections
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
             return "Category"
         } else if section == 2 {
@@ -100,42 +100,42 @@ class AddItemTableViewController: UITableViewController {
         return nil
     }
     
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = Defaults.UI.blueTransperent
         let headerView: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        headerView.textLabel?.textColor = UIColor.whiteColor()
+        headerView.textLabel?.textColor = UIColor.white
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let rowsBySection = [TableViewConstants.rowsInSectionOne, TableViewConstants.rowsInSectionTwo, TableViewConstants.rowsInSectionThree]
         return rowsBySection[section]
     }
     
     //MARK: - TableView Delegate Methods
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if (indexPath.section == 1) {
-            self.category = Defaults.allCategories[indexPath.row]
-            tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if ((indexPath as NSIndexPath).section == 1) {
+            self.category = Defaults.allCategories[(indexPath as NSIndexPath).row]
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
         }
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        if (indexPath.section == 1) {
-            self.category = Defaults.allCategories[indexPath.row]
-            tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if ((indexPath as NSIndexPath).section == 1) {
+            self.category = Defaults.allCategories[(indexPath as NSIndexPath).row]
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
         }
     }
     
-    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        if indexPath.section == 1 && (item != nil) {
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if (indexPath as NSIndexPath).section == 1 && (item != nil) {
             return nil
         }
         return indexPath
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == PhotoViewController.id {
-            if let photoVC = segue.destinationViewController as? PhotoViewController {
+            if let photoVC = segue.destination as? PhotoViewController {
                 if let safeImage = self.imageView.image {
                     photoVC.image = safeImage
                 }
@@ -146,17 +146,17 @@ class AddItemTableViewController: UITableViewController {
 
 //MARK: TextFieldDelegate Methods
 extension AddItemTableViewController : UITextFieldDelegate {
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         self.navigationItem.rightBarButtonItem?.title = "Save"
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if nameTextField.text == nil || nameTextField.text == "" {
             self.navigationItem.rightBarButtonItem?.title = "Done"
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
@@ -164,7 +164,7 @@ extension AddItemTableViewController : UITextFieldDelegate {
 
 extension AddItemTableViewController : Setup {
     func setup() {
-        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: Defaults.UI.textureImage))
+        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteralResourceName: Defaults.UI.textureImage))
         for item in self.navigationItem.leftBarButtonItems! {
             item.tintColor = Defaults.UI.blueSolid
         }
@@ -173,7 +173,7 @@ extension AddItemTableViewController : Setup {
         }
         
         if item != nil {
-            self.nameTextField.enabled = false
+            self.nameTextField.isEnabled = false
             self.nameTextField.text = item?.name
             if self.rememberedEditedDetailsText != nil {
                 self.detailsTextField.text = self.rememberedEditedDetailsText
@@ -189,7 +189,7 @@ extension AddItemTableViewController : Setup {
             }
             
         } else {
-            self.nameTextField.enabled = true
+            self.nameTextField.isEnabled = true
         }
         self.tableView.reloadData()
     }

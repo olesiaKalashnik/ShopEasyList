@@ -23,7 +23,7 @@ class ListViewController: UIViewController {
         self.setup()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupAppearance()
         self.updateUI()
@@ -31,13 +31,13 @@ class ListViewController: UIViewController {
     
     func updateUI() {
         self.items = Library.shared.itemsInList
-        self.hideCompletedOutlet.enabled = self.items.count > 0
+        self.hideCompletedOutlet.isEnabled = self.items.count > 0
         self.tableView.reloadData()
     }
     
     //Helper Function
     func itemsGrouped() -> [[Item]] {
-        func unique<C : SequenceType, T : Hashable where C.Generator.Element == T>(inputArray: C) -> [T] {
+        func unique<C : Sequence, T : Hashable>(_ inputArray: C) -> [T] where C.Iterator.Element == T {
             var addedDict = [T:Bool]()
             return inputArray.filter { addedDict.updateValue(true, forKey: $0) == nil }
         }
@@ -50,23 +50,23 @@ class ListViewController: UIViewController {
         return itemsGrouped
     }
     
-    @IBAction func hideCompleted(sender: UIBarButtonItem) {
+    @IBAction func hideCompleted(_ sender: UIBarButtonItem) {
         for item in Library.shared.items {
             if item.isCompleted {
                 item.isInList = false
                 item.isCompleted = false
                 item.numOfPurchaces += 1
-                item.lastTimeAddedToList = NSDate()
+                item.lastTimeAddedToList = Date()
             }
         }
         
         self.items = Library.shared.itemsInList
-        self.hideCompletedOutlet.enabled = items.filter({$0.isInList}).count > 0
+        self.hideCompletedOutlet.isEnabled = items.filter({$0.isInList}).count > 0
         self.tableView.reloadData()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var destination = segue.destinationViewController as UIViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var destination = segue.destination as UIViewController
         
         if segue.identifier == LibraryViewController.id {
             guard let tabBarController = destination as? UITabBarController else { return }
@@ -82,9 +82,9 @@ class ListViewController: UIViewController {
             if let navController = destination as? UINavigationController {
                 guard let addVC = navController.visibleViewController as? AddItemTableViewController else { return }
                 
-                if let indexPath = self.tableView.indexPathForCell(sender as!ListItemWithDetailsTableViewCell) {
+                if let indexPath = self.tableView.indexPath(for: sender as!ListItemWithDetailsTableViewCell) {
                     var allItemsBySection = self.itemsGrouped()
-                    addVC.item = allItemsBySection[indexPath.section][indexPath.row]
+                    addVC.item = allItemsBySection[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 }
                 
             }
@@ -94,34 +94,34 @@ class ListViewController: UIViewController {
 
 extension ListViewController : UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return Set(self.items.map({$0.category})).count
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let item = itemsGrouped()[section].first else {return nil}
         return item.category
     }
     
-    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = Defaults.UI.blueTransperent
         let headerView: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        headerView.textLabel?.textColor = UIColor.whiteColor()
+        headerView.textLabel?.textColor = UIColor.white
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemsGrouped()[section].count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var allItemsBySection = itemsGrouped()
-        let item = allItemsBySection[indexPath.section][indexPath.row]
+        let item = allItemsBySection[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
         if item.detailsText != "" {
             self.tableView.rowHeight = Defaults.UI.detailsRowHeight
         } else {
             self.tableView.rowHeight = Defaults.UI.noDetailsRowHeight
         }
-        let cell = tableView.dequeueReusableCellWithIdentifier(ListItemWithDetailsTableViewCell.id, forIndexPath: indexPath) as! ListItemWithDetailsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ListItemWithDetailsTableViewCell.id, for: indexPath) as! ListItemWithDetailsTableViewCell
         cell.listItem = item
         
         return cell
@@ -130,20 +130,20 @@ extension ListViewController : UITableViewDataSource {
 
 //MARK: - TableView Delegate Methods
 extension ListViewController : UITableViewDelegate {
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.DetailDisclosureButton
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.detailDisclosureButton
     }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
     }
 }
 
 extension ListViewController : Setup {
     func setup() {
-        self.hideCompletedOutlet.enabled = self.items.count > 0
+        self.hideCompletedOutlet.isEnabled = self.items.count > 0
         self.navigationItem.title = "List"
-        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteral: Defaults.UI.textureImage))
+        self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteralResourceName: Defaults.UI.textureImage))
         for item in self.navigationItem.leftBarButtonItems! {
             item.tintColor = Defaults.UI.blueSolid
         }
@@ -154,7 +154,7 @@ extension ListViewController : Setup {
     
     func setupAppearance() {
         for cell in self.tableView.visibleCells {
-            cell.accessoryType = UITableViewCellAccessoryType.None
+            cell.accessoryType = UITableViewCellAccessoryType.none
         }
     }
 }

@@ -11,24 +11,24 @@ import Foundation
 protocol ItemStoreProtocol : class {
     var items : [Item] {get set }
     var categories : [String]  { get }
-    func add(item: Item)
-    func remove(item: Item)
-    func unique<C : SequenceType, T : Hashable where C.Generator.Element == T>(inputArray: C) -> [T]
+    func add(_ item: Item)
+    func remove(_ item: Item)
+    func unique<C : Sequence, T : Hashable>(_ inputArray: C) -> [T] where C.Iterator.Element == T
     var categoryToItemDictionary : [String: [Item]] { get }
     var groupedItemsAsList : [[Item]] { get }
     var itemsInList : [Item] { get }
-    func editDetails(item: Item)
+    func editDetails(_ item: Item)
 }
 
 extension ItemStoreProtocol {
     
-    func add(item: Item) {
-        if !self.items.contains({($0.name == item.name) && ($0.category == item.category)}) {
+    func add(_ item: Item) {
+        if !self.items.contains(where: {($0.name == item.name) && ($0.category == item.category)}) {
             self.items.append(item)
         }
     }
     
-    func remove(item: Item) {
+    func remove(_ item: Item) {
         self.items = self.items.filter {!(($0.name == item.name) && ($0.category == item.category))}
     }
     
@@ -36,7 +36,7 @@ extension ItemStoreProtocol {
         return self.items.map {$0.category}
     }
     
-    func unique<C : SequenceType, T : Hashable where C.Generator.Element == T>(inputArray: C) -> [T] {
+    func unique<C : Sequence, T : Hashable>(_ inputArray: C) -> [T] where C.Iterator.Element == T {
         var addedDict = [T:Bool]()
         return inputArray.filter { addedDict.updateValue(true, forKey: $0) == nil }
     }
@@ -59,7 +59,7 @@ extension ItemStoreProtocol {
         return self.items.filter{$0.isInList}
     }
     
-    func editDetails(itemToEdit: Item) {
+    func editDetails(_ itemToEdit: Item) {
         for item in self.items {
             if (item.name == itemToEdit.name) && (item.category == itemToEdit.category) {
                 item.detailsText = itemToEdit.detailsText
