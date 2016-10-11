@@ -8,6 +8,8 @@ Features
 - Add images of the specific items you favor.
 - Add and edit notes to your items.
 
-
+![Alt text](https://github.com/olesiaKalashnik/ShopEasyList/blob/master/Compose_small.png)
+![Alt text](https://github.com/olesiaKalashnik/ShopEasyList/blob/master/List_small.png)
+![Alt text](https://github.com/olesiaKalashnik/ShopEasyList/blob/master/Library_small.png)
 
 Copyright © 2016 Olesia Kalashnik. All rights reserved.
