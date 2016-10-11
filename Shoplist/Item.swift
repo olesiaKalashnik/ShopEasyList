@@ -63,12 +63,12 @@ class Item : NSObject, NSCoding {
     required convenience init?(coder aDecoder: NSCoder) {
         let name = aDecoder.decodeObject(forKey: PropertyKey.name) as! String
         let category = aDecoder.decodeObject(forKey: PropertyKey.category) as! String
-        let isInList = aDecoder.decodeObject(forKey: PropertyKey.isInList) as! Bool
-        let isCompleted = aDecoder.decodeObject(forKey: PropertyKey.isCompleted) as! Bool
+        let isInList = aDecoder.decodeBool(forKey: PropertyKey.isInList)
+        let isCompleted = aDecoder.decodeBool(forKey: PropertyKey.isCompleted)
         let detailsText = aDecoder.decodeObject(forKey: PropertyKey.detailsText) as? String
         let image = aDecoder.decodeObject(forKey: PropertyKey.image) as? UIImage
         let lastTimeAddedToList = aDecoder.decodeObject(forKey: PropertyKey.lastTimeAddedToList) as? Date
-        let numOfPurchaces = aDecoder.decodeObject(forKey: PropertyKey.numOfPurchaces) as! Int
+        let numOfPurchaces = aDecoder.decodeInteger(forKey: PropertyKey.numOfPurchaces)
         
         self.init(name: name, category: category, isInList: isInList, completed: isCompleted, details: detailsText, image: image, addTime: lastTimeAddedToList, numOfPurchaces: numOfPurchaces)
     }
