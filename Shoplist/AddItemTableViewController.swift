@@ -14,6 +14,8 @@ class AddItemTableViewController: UITableViewController {
     @IBOutlet weak var detailsTextField: UITextField!
     
     var item : Item?
+    var currList : List?
+    
     @IBOutlet weak var addImageButton: UIButton!
     let library = Library.shared
     var image : UIImage? {
@@ -56,7 +58,7 @@ class AddItemTableViewController: UITableViewController {
                     } else {
                         item = Item(name: newItem, category: "None")
                     }
-                    item!.isInList = true
+                    item!.list = self.currList
                     item!.isCompleted = false
                     item!.numOfPurchaces = 0
                     item!.detailsText = detailsTextField.text

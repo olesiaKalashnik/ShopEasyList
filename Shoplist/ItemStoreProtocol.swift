@@ -16,7 +16,7 @@ protocol ItemStoreProtocol : class {
     func unique<C : Sequence, T : Hashable>(_ inputArray: C) -> [T] where C.Iterator.Element == T
     var categoryToItemDictionary : [String: [Item]] { get }
     var groupedItemsAsList : [[Item]] { get }
-    var itemsInList : [Item] { get }
+    func itemsInList(list: List) -> [Item]
     func editDetails(_ item: Item)
 }
 
@@ -55,8 +55,8 @@ extension ItemStoreProtocol {
         return categorizedItems.values.map { $0 }
     }
     
-    var itemsInList : [Item] {
-        return self.items.filter{$0.isInList}
+    func itemsInList(list: List) -> [Item] {
+        return self.items.filter{$0.list?.name == list.name}
     }
     
     func editDetails(_ itemToEdit: Item) {

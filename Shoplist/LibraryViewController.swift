@@ -11,7 +11,6 @@ import UIKit
 class LibraryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var doneBarItem: UIBarButtonItem!
     
     var library = Library.shared {
@@ -20,7 +19,12 @@ class LibraryViewController: UIViewController {
         }
     }
     
-    var currentList = Library.shared.itemsInList
+    var currList : List? {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    var itemsInCurrentList = [Item]()
     var listVC: ListViewController?
     
     //MARK: Controller Lifecycle
@@ -37,20 +41,25 @@ class LibraryViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.currentList += updateListWithSelectedItems()
+        self.itemsInCurrentList += updateListWithSelectedItems() ?? self.itemsInCurrentList
     }
     
     @IBAction func doneButtonSelected(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
-    func updateListWithSelectedItems() -> [Item] {
-        let selectedItems = self.library.itemsInList
-        if self.currentList.count > 0 {
+    func updateListWithSelectedItems() -> [Item]? {
+        guard self.currList != nil else {
+            return nil
+        }
+        let selectedItems = self.library.itemsInList(list: self.currList!)
+        if self.itemsInCurrentList.count > 0 {
             var itemsToBeAdded = [Item]()
             for item in selectedItems {
-                if !self.currentList.contains(where: {($0.category == item.category) && ($0.name.lowercased() == item.name.lowercased())}) {
-                    itemsToBeAdded.append(item)
+                if let itemsInCurrList = self.currList?.items {
+                    if !itemsInCurrList.contains(where: {($0.category == item.category) && ($0.name.lowercased() == item.name.lowercased())}) {
+                        itemsToBeAdded.append(item)
+                    }
                 }
             }
             return itemsToBeAdded
@@ -68,6 +77,7 @@ class LibraryViewController: UIViewController {
                 if let indexPath = self.tableView.indexPath(for: sender as!LibraryTableViewCell) {
                     let allItemsBySection = library.groupedItemsAsList
                     addVC.item = allItemsBySection[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
+                    addVC.currList = self.currList
                 }
                 
             }
@@ -110,6 +120,7 @@ extension LibraryViewController : UITableViewDataSource {
             self.tableView.rowHeight = UITableViewAutomaticDimension
         }
         cell.libraryItem = item
+        cell.currList = self.currList
         return cell
     }
 }
@@ -129,7 +140,7 @@ extension LibraryViewController : UITableViewDelegate {
         if editingStyle == .delete {
             let librsaryItemsGrouped = library.groupedItemsAsList
             let itemToBeRemoved = librsaryItemsGrouped[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
-            itemToBeRemoved.isInList = false
+            itemToBeRemoved.list = nil
             self.library.remove(itemToBeRemoved)
             tableView.reloadData()
         }
@@ -150,18 +161,18 @@ extension LibraryViewController : Setup {
     }
     
     func setupAppearance() {
+        if let currList = self.currList {
+            self.itemsInCurrentList = Library.shared.itemsInList(list: currList)
+        }
+        
+        
         for cell in self.tableView.visibleCells {
             cell.accessoryType = UITableViewCellAccessoryType.none
         }
         
         if let list = listVC?.items {
-            self.currentList = list
-            self.currentList += updateListWithSelectedItems()
-            for item in library.items {
-                if self.currentList.count > 0 {
-                    item.isInList = self.currentList.contains(where: {($0.category == item.category) && ($0.name.lowercased() == item.name.lowercased())})
-                }
-            }
+            self.itemsInCurrentList = list
+            self.itemsInCurrentList += updateListWithSelectedItems() ?? self.itemsInCurrentList
         }
     }
 }
