@@ -20,25 +20,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gUC-Z3-aZp">
-                                <frame key="frameInset" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Lists" id="qCW-3G-UxN">
-                                        <connections>
-                                            <segue destination="LX4-bB-xGd" kind="show" id="sz9-KY-nrE"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="sBw-DA-wvF"/>
-                                    <barButtonItem title="Share" id="1Q8-wR-FdQ"/>
-                                </items>
-                            </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8fi-yA-Qgl">
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.1960784314" green="0.66666666669999997" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ListItemWithDetailsTableViewCell" rowHeight="55" id="shh-rR-zaj" customClass="ListItemWithDetailsTableViewCell" customModule="Shoplist" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="55"/>
+                                        <rect key="frame" x="0.0" y="92" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="shh-rR-zaj" id="3C3-Vb-Aew">
                                             <frame key="frameInset" width="375" height="54"/>
@@ -100,13 +87,27 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="oUv-1A-DXj"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gUC-Z3-aZp">
+                                <items>
+                                    <barButtonItem title="Lists" id="qCW-3G-UxN">
+                                        <connections>
+                                            <segue destination="LX4-bB-xGd" kind="show" id="sz9-KY-nrE"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="sBw-DA-wvF"/>
+                                    <barButtonItem title="Share" id="1Q8-wR-FdQ"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="8fi-yA-Qgl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0Hh-Iq-8yK"/>
-                            <constraint firstItem="8fi-yA-Qgl" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" constant="-44" id="bow-dP-bSt"/>
-                            <constraint firstItem="8fi-yA-Qgl" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="gxl-x0-uGB"/>
-                            <constraint firstAttribute="trailing" secondItem="8fi-yA-Qgl" secondAttribute="trailing" id="t5E-eV-9cM"/>
+                            <constraint firstItem="8fi-yA-Qgl" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="L5C-Ma-VI8"/>
+                            <constraint firstItem="8fi-yA-Qgl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Lpc-r6-EGC"/>
+                            <constraint firstAttribute="trailing" secondItem="8fi-yA-Qgl" secondAttribute="trailing" id="NU9-Up-0Bp"/>
+                            <constraint firstItem="8fi-yA-Qgl" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="kYi-1J-T0t"/>
+                            <constraint firstItem="8fi-yA-Qgl" firstAttribute="trailing" secondItem="gUC-Z3-aZp" secondAttribute="trailing" id="s2g-ON-LtV"/>
+                            <constraint firstItem="8fi-yA-Qgl" firstAttribute="leading" secondItem="gUC-Z3-aZp" secondAttribute="leading" id="uow-D9-4jg"/>
+                            <constraint firstItem="8fi-yA-Qgl" firstAttribute="bottom" secondItem="gUC-Z3-aZp" secondAttribute="bottom" id="zJ4-Xe-TXI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="List" id="hm6-99-Pwt">
