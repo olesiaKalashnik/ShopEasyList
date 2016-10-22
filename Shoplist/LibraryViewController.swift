@@ -19,11 +19,8 @@ class LibraryViewController: UIViewController {
         }
     }
     
-    var currList : List? {
-        didSet {
-            self.tableView.reloadData()
-        }
-    }
+    var currList : List?
+
     var itemsInCurrentList = [Item]()
     var listVC: ListViewController?
     
@@ -170,7 +167,7 @@ extension LibraryViewController : Setup {
             cell.accessoryType = UITableViewCellAccessoryType.none
         }
         
-        if let list = listVC?.items {
+        if let list = listVC?.currentList.items {
             self.itemsInCurrentList = list
             self.itemsInCurrentList += updateListWithSelectedItems() ?? self.itemsInCurrentList
         }

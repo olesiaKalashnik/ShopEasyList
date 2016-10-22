@@ -20,15 +20,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gUC-Z3-aZp">
+                                <frame key="frameInset" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Lists" id="qCW-3G-UxN">
+                                        <connections>
+                                            <segue destination="LX4-bB-xGd" kind="show" id="sz9-KY-nrE"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="sBw-DA-wvF"/>
+                                    <barButtonItem title="Share" id="1Q8-wR-FdQ"/>
+                                </items>
+                            </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8fi-yA-Qgl">
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.1960784314" green="0.66666666669999997" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ListItemWithDetailsTableViewCell" rowHeight="55" id="shh-rR-zaj" customClass="ListItemWithDetailsTableViewCell" customModule="Shoplist" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="55"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="shh-rR-zaj" id="3C3-Vb-Aew">
-                                            <frame key="frameInset" width="600" height="54.5"/>
+                                            <frame key="frameInset" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2Y-1n-p3s" customClass="CheckboxButton" customModule="Shoplist" customModuleProvider="target">
@@ -87,26 +100,13 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="oUv-1A-DXj"/>
                                 </connections>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gUC-Z3-aZp">
-                                <frame key="frameInset" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Lists" id="qCW-3G-UxN">
-                                        <connections>
-                                            <segue destination="UEz-E5-QjR" kind="show" id="O1l-Av-Qkc"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="sBw-DA-wvF"/>
-                                    <barButtonItem title="Share" id="1Q8-wR-FdQ"/>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8fi-yA-Qgl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0Hh-Iq-8yK"/>
-                            <constraint firstItem="8fi-yA-Qgl" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="bow-dP-bSt"/>
-                            <constraint firstItem="8fi-yA-Qgl" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="gxl-x0-uGB"/>
-                            <constraint firstAttribute="trailing" secondItem="8fi-yA-Qgl" secondAttribute="trailing" constant="-225" id="t5E-eV-9cM"/>
+                            <constraint firstItem="8fi-yA-Qgl" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" constant="-44" id="bow-dP-bSt"/>
+                            <constraint firstItem="8fi-yA-Qgl" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="gxl-x0-uGB"/>
+                            <constraint firstAttribute="trailing" secondItem="8fi-yA-Qgl" secondAttribute="trailing" id="t5E-eV-9cM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="List" id="hm6-99-Pwt">
@@ -130,44 +130,33 @@
             </objects>
             <point key="canvasLocation" x="959.20000000000005" y="-384.55772113943033"/>
         </scene>
-        <!--All Lists View Controller-->
-        <scene sceneID="Dnm-WP-fVB">
+        <!--All Lists Table View Controller-->
+        <scene sceneID="DuQ-61-h0C">
             <objects>
-                <viewController storyboardIdentifier="AllListsViewController" id="UEz-E5-QjR" customClass="AllListsViewController" customModule="Shoplist" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5Lc-rE-KXk"/>
-                        <viewControllerLayoutGuide type="bottom" id="K22-tb-RPN"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fBP-Ey-N6Q">
+                <tableViewController id="LX4-bB-xGd" customClass="AllListsTableViewController" customModule="Shoplist" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="RwD-sL-kiO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tui-l4-xLK">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AllListsCell" id="7ik-A1-vr4">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7ik-A1-vr4" id="fzS-EE-CAJ">
-                                            <frame key="frameInset" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Tui-l4-xLK" firstAttribute="top" secondItem="fBP-Ey-N6Q" secondAttribute="top" id="4pa-4x-Vfy"/>
-                            <constraint firstItem="Tui-l4-xLK" firstAttribute="bottom" secondItem="K22-tb-RPN" secondAttribute="top" id="MFU-tS-PRP"/>
-                            <constraint firstItem="Tui-l4-xLK" firstAttribute="leading" secondItem="fBP-Ey-N6Q" secondAttribute="leading" id="cX7-RT-Qqn"/>
-                            <constraint firstAttribute="trailing" secondItem="Tui-l4-xLK" secondAttribute="trailing" id="oQf-8N-iNP"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DvZ-kG-YBp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AllListsCell" id="SHE-AP-Nf7">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SHE-AP-Nf7" id="roz-8N-QMT">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="LX4-bB-xGd" id="eVH-tw-d2Q"/>
+                            <outlet property="delegate" destination="LX4-bB-xGd" id="gLb-as-pUD"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JrB-OM-Mha" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="589.60000000000002" y="341.37931034482762"/>
+            <point key="canvasLocation" x="719" y="290"/>
         </scene>
         <!--Library View Controller-->
         <scene sceneID="9yP-nC-4Pf">
@@ -186,10 +175,10 @@
                                 <color key="separatorColor" red="0.1960784314" green="0.66666666669999997" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LibraryTableViewCell" rowHeight="91" id="eBG-Vv-4fi" customClass="LibraryTableViewCell" customModule="Shoplist" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="91"/>
+                                        <rect key="frame" x="0.0" y="92" width="1000" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eBG-Vv-4fi" id="cyY-Bz-rmY">
-                                            <frame key="frameInset" width="375" height="90.5"/>
+                                            <frame key="frameInset" width="1000" height="90.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbT-G8-Dc2" customClass="CheckboxButton" customModule="Shoplist" customModuleProvider="target">
@@ -1000,10 +989,10 @@
                                 <color key="separatorColor" red="0.1960784314" green="0.66666666669999997" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UncategorizedTableViewCell" rowHeight="65" id="kqo-0b-M5a" customClass="UncategorizedTableViewCell" customModule="Shoplist" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="65"/>
+                                        <rect key="frame" x="0.0" y="92" width="1000" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kqo-0b-M5a" id="5LN-gr-WwO">
-                                            <frame key="frameInset" width="375" height="64.5"/>
+                                            <frame key="frameInset" width="1000" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bqh-p9-yX7" customClass="CheckboxButton" customModule="Shoplist" customModuleProvider="target">
@@ -1137,6 +1126,6 @@
         <image name="library_50" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nIx-Ip-v3X"/>
+        <segue reference="zpH-6p-h5t"/>
     </inferredMetricsTieBreakers>
 </document>

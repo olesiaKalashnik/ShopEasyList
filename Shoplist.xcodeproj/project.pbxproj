@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E0BD9881DB6D36C0047E71E /* AllListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BD9871DB6D36C0047E71E /* AllListsViewController.swift */; };
 		0E0BD98A1DB6D9AD0047E71E /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0BD9891DB6D9AD0047E71E /* List.swift */; };
+		0E11AE701DBB1DE700DB330F /* AllListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E11AE6F1DBB1DE700DB330F /* AllListsTableViewController.swift */; };
 		0E9D71D61D209BCC00BD9EB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D71D51D209BCC00BD9EB6 /* AppDelegate.swift */; };
 		0E9D71D81D209BCC00BD9EB6 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D71D71D209BCC00BD9EB6 /* ListViewController.swift */; };
 		0E9D71DB1D209BCC00BD9EB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E9D71D91D209BCC00BD9EB6 /* Main.storyboard */; };
@@ -51,8 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0E0BD9871DB6D36C0047E71E /* AllListsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllListsViewController.swift; sourceTree = "<group>"; };
 		0E0BD9891DB6D9AD0047E71E /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		0E11AE6F1DBB1DE700DB330F /* AllListsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllListsTableViewController.swift; sourceTree = "<group>"; };
 		0E9D71D21D209BCC00BD9EB6 /* Shoplist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoplist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9D71D51D209BCC00BD9EB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E9D71D71D209BCC00BD9EB6 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +175,7 @@
 				0E9D72711D25C14D00BD9EB6 /* LibraryViewController.swift */,
 				0E9D71D71D209BCC00BD9EB6 /* ListViewController.swift */,
 				0E9D72811D2701CF00BD9EB6 /* PhotoViewController.swift */,
+				0E11AE6F1DBB1DE700DB330F /* AllListsTableViewController.swift */,
 				0E9D72871D2B232200BD9EB6 /* AddItemTableViewController.swift */,
 				0E9D72891D2C298800BD9EB6 /* FavoritesViewController.swift */,
 				0E9D728B1D2C32CB00BD9EB6 /* RecentsViewController.swift */,
@@ -186,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				0E9D71D91D209BCC00BD9EB6 /* Main.storyboard */,
-				0E0BD9871DB6D36C0047E71E /* AllListsViewController.swift */,
 				0E9D72151D20A94600BD9EB6 /* ListItemWithDetailsTableViewCell.swift */,
 				0E9D72731D25C9B900BD9EB6 /* LibraryTableViewCell.swift */,
 				0E9D728D1D2C45DC00BD9EB6 /* UncategorizedTableViewCell.swift */,
@@ -361,6 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E11AE701DBB1DE700DB330F /* AllListsTableViewController.swift in Sources */,
 				0E9D72181D20AB0800BD9EB6 /* CheckboxButton.swift in Sources */,
 				0E9D720B1D209FC400BD9EB6 /* Item.swift in Sources */,
 				0E9D72761D25CE0C00BD9EB6 /* Defaults.swift in Sources */,
@@ -369,7 +370,6 @@
 				0E9D728C1D2C32CB00BD9EB6 /* RecentsViewController.swift in Sources */,
 				0E9D72841D27099D00BD9EB6 /* ItemStoreProtocol.swift in Sources */,
 				0E9D727C1D26DC3000BD9EB6 /* Savable.swift in Sources */,
-				0E0BD9881DB6D36C0047E71E /* AllListsViewController.swift in Sources */,
 				0E9D728E1D2C45DC00BD9EB6 /* UncategorizedTableViewCell.swift in Sources */,
 				0E9D72881D2B232200BD9EB6 /* AddItemTableViewController.swift in Sources */,
 				0E9D728A1D2C298800BD9EB6 /* FavoritesViewController.swift in Sources */,

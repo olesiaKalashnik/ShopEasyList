@@ -13,18 +13,7 @@ class ListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var hideCompletedOutlet: UIBarButtonItem!
     
-    var currentList : List?
-    var items : [Item]? {
-        get {
-            guard self.currentList != nil else {
-                return nil
-            }
-            return currentList!.items
-        }
-        set {
-            self.items = newValue
-        }
-    }
+    var currentList : List!
     var selectedItemWithoutDetails : Item?
     var selectedItemWithDetails : Item?
     
@@ -41,11 +30,8 @@ class ListViewController: UIViewController {
     }
     
     func updateUI() {
-        guard self.currentList != nil else {
-            return
-        }
-        self.items = Library.shared.itemsInList(list: self.currentList!)
-        self.hideCompletedOutlet.isEnabled = self.items!.count > 0
+        currentList.items = Library.shared.itemsInList(list: self.currentList)
+        self.hideCompletedOutlet.isEnabled = currentList.items.count > 0
         self.tableView.reloadData()
     }
     
@@ -55,13 +41,10 @@ class ListViewController: UIViewController {
             var addedDict = [T:Bool]()
             return inputArray.filter { addedDict.updateValue(true, forKey: $0) == nil }
         }
-        guard self.items != nil else {
-            return [[Item]()]
-        }
-        let categories = unique(self.items!.map { $0.category })
+        let categories = unique(currentList.items.map { $0.category })
         var itemsGrouped = [[Item]]()
         for category in categories {
-            itemsGrouped.append(self.items!.filter {$0.category == category} )
+            itemsGrouped.append(currentList.items.filter {$0.category == category} )
         }
         return itemsGrouped
     }
@@ -75,11 +58,11 @@ class ListViewController: UIViewController {
                 item.lastTimeAddedToList = Date()
             }
         }
-        if let currList = self.currentList {
-            self.items = Library.shared.itemsInList(list: currList)
-            self.hideCompletedOutlet.isEnabled = self.items!.count > 0
+        
+            currentList.items = Library.shared.itemsInList(list: currentList)
+            self.hideCompletedOutlet.isEnabled = currentList.items.count > 0
             self.tableView.reloadData()
-        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -91,8 +74,8 @@ class ListViewController: UIViewController {
             guard let navController = tabBarVCs.first as? UINavigationController else {return}
             destination = navController.visibleViewController!
             if let libraryVC = destination as? LibraryViewController {
-                //libraryVC.currentList = self.items
                 libraryVC.currList = self.currentList
+                print("List name is \(libraryVC.currList?.name)")
                 libraryVC.listVC = self
             }
         }
@@ -113,11 +96,7 @@ class ListViewController: UIViewController {
 extension ListViewController : UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if let items = items {
-            return Set(items.map({$0.category})).count
-        } else {
-            return 1
-        }
+        return Set(currentList.items.map({$0.category})).count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -163,10 +142,11 @@ extension ListViewController : UITableViewDelegate {
 
 extension ListViewController : Setup {
     func setup() {
-        if let items = items {
-            self.hideCompletedOutlet.isEnabled = items.count > 0
-        }
-        self.navigationItem.title = self.currentList?.name ?? "New List"
+        self.currentList = List(items: [Item]())
+        
+        self.hideCompletedOutlet.isEnabled = currentList.items.count > 0
+        
+        self.navigationItem.title = self.currentList.name
         self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteralResourceName: Defaults.UI.textureImage))
         for item in self.navigationItem.leftBarButtonItems! {
             item.tintColor = Defaults.UI.blueSolid

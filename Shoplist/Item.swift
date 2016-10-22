@@ -41,7 +41,7 @@ class Item : NSObject, NSCoding {
     }
     
     func equals(_ item: Item) -> Bool {
-        return (self.list?.name == item.list?.name) && (self.name == item.name) && (self.category == item.category)
+        return (self.list?.id == item.list?.id) && (self.name == item.name) && (self.category == item.category)
     }
     
     // MARK: Archiving Paths
