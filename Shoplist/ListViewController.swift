@@ -75,7 +75,6 @@ class ListViewController: UIViewController {
             destination = navController.visibleViewController!
             if let libraryVC = destination as? LibraryViewController {
                 libraryVC.currList = self.currentList
-                print("List name is \(libraryVC.currList?.name)")
                 libraryVC.listVC = self
             }
         }
