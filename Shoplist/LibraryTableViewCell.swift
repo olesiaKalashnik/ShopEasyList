@@ -14,7 +14,11 @@ class LibraryTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var itemImageView: UIImageView!
     
-    var currList : List?
+    var currList : List? {
+        didSet {
+            self.setup()
+        }
+    }
     
     var libraryItem : Item? {
         didSet {
@@ -34,7 +38,7 @@ extension LibraryTableViewCell : Setup {
     func setup() {
         guard let item = self.libraryItem else { return }
         self.nameLabel?.text = item.name.lowercased()
-        if let currList = item.list {
+        if let currList = self.currList {
             self.completionCheckbox.isSelected = Library.shared.itemsInList(list: currList).contains(item)
         }
         itemImageView.image = item.image

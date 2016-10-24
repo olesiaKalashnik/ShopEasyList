@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
+        // Remember the last open list
         lastOpenList?.lastOpen = true
+        
         Library.shared.saveObjects()
         CollectionOfLists.shared.saveObjects()
     }
