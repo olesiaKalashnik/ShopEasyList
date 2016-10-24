@@ -12,7 +12,7 @@ class CollectionOfLists : Savable {
     // Savable protocol
     typealias Object = List
     var path = Object.ArchiveURL.path
-
+    
     static let shared = CollectionOfLists()
     fileprivate init() {
         self.items = NSKeyedUnarchiver.unarchiveObject(withFile: self.path) as? [Object] ?? [Object]()
@@ -28,8 +28,16 @@ class CollectionOfLists : Savable {
     func add(list: List) {
         self.items.append(list)
     }
-
     
+    func lastOpenList() -> List? {
+        return self.items.filter {$0.lastOpen}.first
+    }
+    
+    func setListLastOpenToFalse() {
+        for list in self.items {
+            list.lastOpen = false
+        }
+    }
     
     
     

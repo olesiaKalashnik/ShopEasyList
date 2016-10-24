@@ -13,7 +13,7 @@ class ListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var hideCompletedOutlet: UIBarButtonItem!
     
-    var currentList : List!
+    var currentList : List! = CollectionOfLists.shared.lastOpenList()
     var selectedItemWithoutDetails : Item?
     var selectedItemWithDetails : Item?
     
@@ -141,9 +141,14 @@ extension ListViewController : UITableViewDelegate {
 
 extension ListViewController : Setup {
     func setup() {
+        //If no lists have been created yet, create an empty list with default name "New List"
         if currentList == nil {
             self.currentList = List(items: [Item]())
+            CollectionOfLists.shared.add(list: currentList)
+            CollectionOfLists.shared.saveObjects()
         }
+        //reset all lists' "lastOpen" property to false
+        CollectionOfLists.shared.setListLastOpenToFalse()
         
         self.hideCompletedOutlet.isEnabled = currentList.items.count > 0
         
@@ -157,8 +162,10 @@ extension ListViewController : Setup {
     }
     
     func setupAppearance() {
-        self.navigationItem.title = self.currentList.name
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.lastOpenList = currentList
         
+        self.navigationItem.title = self.currentList.name
         for cell in self.tableView.visibleCells {
             cell.accessoryType = UITableViewCellAccessoryType.none
         }

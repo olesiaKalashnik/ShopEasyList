@@ -10,6 +10,8 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var lastOpenList : List?
 
     var window: UIWindow?
 
@@ -18,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
+        lastOpenList?.lastOpen = true
         Library.shared.saveObjects()
         CollectionOfLists.shared.saveObjects()
     }
