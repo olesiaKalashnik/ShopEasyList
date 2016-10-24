@@ -13,16 +13,11 @@ class List : NSObject, ItemStoreProtocol, NSCoding {
     var items: [Item]
     var name = "New List"
     var id : String
-    var color : UIColor
-    
-    private let colors = [UIColor.blue, UIColor.red, UIColor.green, UIColor.purple, UIColor.yellow, UIColor.brown, UIColor.gray, UIColor.cyan]
     
     init(items: [Item], name: String = "New List", id : String = UUID().uuidString) {
         self.items = items
         self.name = name
-        self.color = colors[Int.random(maxValue: colors.count)]
         self.id = id
-        print(id)
     }
     
     struct PropertyKeys {
@@ -45,10 +40,4 @@ class List : NSObject, ItemStoreProtocol, NSCoding {
         self.init(items: [Item](), name: name, id: id)
     }
     
-}
-
-extension Int {
-    static func random(maxValue: Int) -> Int {
-        return Int(arc4random_uniform(UInt32(maxValue)))
-    }
 }

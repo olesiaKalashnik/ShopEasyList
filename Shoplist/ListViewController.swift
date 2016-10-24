@@ -59,9 +59,9 @@ class ListViewController: UIViewController {
             }
         }
         
-            currentList.items = Library.shared.itemsInList(list: currentList)
-            self.hideCompletedOutlet.isEnabled = currentList.items.count > 0
-            self.tableView.reloadData()
+        currentList.items = Library.shared.itemsInList(list: currentList)
+        self.hideCompletedOutlet.isEnabled = currentList.items.count > 0
+        self.tableView.reloadData()
         
     }
     
@@ -142,11 +142,12 @@ extension ListViewController : UITableViewDelegate {
 
 extension ListViewController : Setup {
     func setup() {
-        self.currentList = List(items: [Item]())
+        if currentList == nil {
+            self.currentList = List(items: [Item]())
+        }
         
         self.hideCompletedOutlet.isEnabled = currentList.items.count > 0
         
-        self.navigationItem.title = self.currentList.name
         self.tableView?.backgroundView = UIImageView(image: UIImage(imageLiteralResourceName: Defaults.UI.textureImage))
         for item in self.navigationItem.leftBarButtonItems! {
             item.tintColor = Defaults.UI.blueSolid
@@ -157,6 +158,8 @@ extension ListViewController : Setup {
     }
     
     func setupAppearance() {
+        self.navigationItem.title = self.currentList.name
+        
         for cell in self.tableView.visibleCells {
             cell.accessoryType = UITableViewCellAccessoryType.none
         }

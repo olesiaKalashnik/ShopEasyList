@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllListsTableViewController: UITableViewController, UITextFieldDelegate {
+class AllListsTableViewController: UITableViewController {
     
     var data : [List]! = CollectionOfLists.shared.items {
         didSet {
@@ -16,9 +16,12 @@ class AllListsTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
+    var selectedList : List?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Create and save a default list "NewList", if no lists have been created yet
         if data.count < 1 {
             let newList = List(items: [Item](), name: "New List")
             data.append(newList)
@@ -44,6 +47,27 @@ class AllListsTableViewController: UITableViewController, UITextFieldDelegate {
         return data.count + 1
     }
     
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        selectedList = data[indexPath.row]
+        return indexPath
+    }
+    
+    //MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "List" {
+            if let destinationVC = segue.destination as? ListViewController {
+                destinationVC.currentList = selectedList
+            }
+        }
+    }
+    
+}
+
+//MARK: - UITextFieldDelegate methods
+
+extension AllListsTableViewController : UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let name = textField.text {
             let newList = List(items: [Item](), name: name)
@@ -55,6 +79,8 @@ class AllListsTableViewController: UITableViewController, UITextFieldDelegate {
         tableView.reloadData()
         return true
     }
-    
-    
 }
+
+
+
+

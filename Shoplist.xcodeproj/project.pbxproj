@@ -174,10 +174,10 @@
 		0E9D72041D209DBD00BD9EB6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0E9D72711D25C14D00BD9EB6 /* LibraryViewController.swift */,
-				0E9D71D71D209BCC00BD9EB6 /* ListViewController.swift */,
-				0E9D72811D2701CF00BD9EB6 /* PhotoViewController.swift */,
 				0E11AE6F1DBB1DE700DB330F /* AllListsTableViewController.swift */,
+				0E9D71D71D209BCC00BD9EB6 /* ListViewController.swift */,
+				0E9D72711D25C14D00BD9EB6 /* LibraryViewController.swift */,
+				0E9D72811D2701CF00BD9EB6 /* PhotoViewController.swift */,
 				0E9D72871D2B232200BD9EB6 /* AddItemTableViewController.swift */,
 				0E9D72891D2C298800BD9EB6 /* FavoritesViewController.swift */,
 				0E9D728B1D2C32CB00BD9EB6 /* RecentsViewController.swift */,
