@@ -11,7 +11,7 @@ import UIKit
 class Library: Savable, ItemStoreProtocol {
     typealias Object = Item
     
-    var path = Item.ArchiveURL.path
+    var path = Item.ArchiveURLForItems.path
     
     static let shared = Library()
     fileprivate init() {

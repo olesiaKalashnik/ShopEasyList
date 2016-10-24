@@ -10,7 +10,7 @@ import UIKit
 
 class AllListsTableViewController: UITableViewController, UITextFieldDelegate {
     
-    var data : [List]! {
+    var data : [List]! = CollectionOfLists.shared.items {
         didSet {
             tableView.reloadData()
         }
@@ -19,8 +19,10 @@ class AllListsTableViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if data == nil {
-            data = [List(items: [Item](), name: "New List")]
+        if data.count < 1 {
+            let newList = List(items: [Item](), name: "New List")
+            data.append(newList)
+            CollectionOfLists.shared.saveObjects()
         }
     }
     
@@ -31,7 +33,7 @@ class AllListsTableViewController: UITableViewController, UITextFieldDelegate {
             cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         } else {
             let newListTextField = UITextField(frame: CGRect(origin: CGPoint(x: 16, y: cell.contentView.bounds.minY), size: CGSize(width: cell.contentView.bounds.width - 16.0, height: cell.contentView.bounds.height)))
-            newListTextField.placeholder = "❍"
+            newListTextField.placeholder = "＋"
             newListTextField.delegate = self
             cell.addSubview(newListTextField)
         }
@@ -44,20 +46,15 @@ class AllListsTableViewController: UITableViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let name = textField.text {
-            data.append(List(items: [Item](), name: name))
+            let newList = List(items: [Item](), name: name)
+            data.append(newList)
+            CollectionOfLists.shared.add(list: newList)
+            CollectionOfLists.shared.saveObjects()
         }
         resignFirstResponder()
         tableView.reloadData()
         return true
     }
-    
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        if let name = textField.text {
-//            data.append(List(items: [Item](), name: name))
-//        }
-//        resignFirstResponder()
-//        tableView.reloadData()
-//    }
     
     
 }

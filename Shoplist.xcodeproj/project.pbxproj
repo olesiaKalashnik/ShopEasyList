@@ -31,6 +31,7 @@
 		0E9D728A1D2C298800BD9EB6 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D72891D2C298800BD9EB6 /* FavoritesViewController.swift */; };
 		0E9D728C1D2C32CB00BD9EB6 /* RecentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D728B1D2C32CB00BD9EB6 /* RecentsViewController.swift */; };
 		0E9D728E1D2C45DC00BD9EB6 /* UncategorizedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D728D1D2C45DC00BD9EB6 /* UncategorizedTableViewCell.swift */; };
+		0EA3D9061DBDAED7004EFF63 /* CollectionOfLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA3D9051DBDAED7004EFF63 /* CollectionOfLists.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		0E9D72891D2C298800BD9EB6 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		0E9D728B1D2C32CB00BD9EB6 /* RecentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentsViewController.swift; sourceTree = "<group>"; };
 		0E9D728D1D2C45DC00BD9EB6 /* UncategorizedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UncategorizedTableViewCell.swift; sourceTree = "<group>"; };
+		0EA3D9051DBDAED7004EFF63 /* CollectionOfLists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionOfLists.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 				0E9D720A1D209FC400BD9EB6 /* Item.swift */,
 				0E0BD9891DB6D9AD0047E71E /* List.swift */,
 				0E9D720E1D20A10500BD9EB6 /* Library.swift */,
+				0EA3D9051DBDAED7004EFF63 /* CollectionOfLists.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				0E9D72761D25CE0C00BD9EB6 /* Defaults.swift in Sources */,
 				0E9D72821D2701CF00BD9EB6 /* PhotoViewController.swift in Sources */,
 				0E9D72741D25C9B900BD9EB6 /* LibraryTableViewCell.swift in Sources */,
+				0EA3D9061DBDAED7004EFF63 /* CollectionOfLists.swift in Sources */,
 				0E9D728C1D2C32CB00BD9EB6 /* RecentsViewController.swift in Sources */,
 				0E9D72841D27099D00BD9EB6 /* ItemStoreProtocol.swift in Sources */,
 				0E9D727C1D26DC3000BD9EB6 /* Savable.swift in Sources */,

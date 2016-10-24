@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillResignActive(_ application: UIApplication) {
         Library.shared.saveObjects()
+        CollectionOfLists.shared.saveObjects()
     }
 }
 
