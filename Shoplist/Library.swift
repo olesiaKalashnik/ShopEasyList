@@ -20,17 +20,15 @@ class Library: Savable, ItemStoreProtocol {
     
     var items : [Object]
     
-    init(items: [Item]) {
+    init(items: [Object]) {
         self.items = items
     }
-    
-    func addLibraryItem(_ item: Item) {
-        Library.shared.items.append(item)
-    }
-    
+
     //Computed Variables and Methods
-    func getSelectedItems(inList: List) -> [Item] {
-        return self.items.filter {$0.list?.id == inList.id}
+    func getSelectedItems(inList: List) -> [Object] {
+        return self.items.filter {$0.lists.contains(where: { (list) -> Bool in
+            list.id == inList.id
+        })}
     }
     
     

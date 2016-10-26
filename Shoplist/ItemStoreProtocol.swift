@@ -56,8 +56,7 @@ extension ItemStoreProtocol {
     }
     
     func itemsInList(list: List) -> [Item] {
-        
-        return self.items.filter{$0.list?.id == list.id}
+        return self.items.filter{$0.lists.contains(where: {$0.id == list.id})}
     }
     
     func editDetails(_ itemToEdit: Item) {

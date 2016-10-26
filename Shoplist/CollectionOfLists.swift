@@ -39,6 +39,9 @@ class CollectionOfLists : Savable {
         }
     }
     
+    func getAllLists() -> [List] {
+        return self.items
+    }
     
     
     

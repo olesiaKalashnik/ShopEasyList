@@ -58,7 +58,9 @@ class AddItemTableViewController: UITableViewController {
                     } else {
                         item = Item(name: newItem, category: "None")
                     }
-                    item!.list = self.currList
+                    if let currList = self.currList {
+                        item!.lists = [currList]
+                    }
                     item!.isCompleted = false
                     item!.numOfPurchaces = 0
                     item!.detailsText = detailsTextField.text

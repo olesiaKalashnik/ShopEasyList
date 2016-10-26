@@ -11,17 +11,17 @@ import UIKit
 class Item : NSObject, NSCoding {
     let name: String
     let category : String
-    var list : List?
+    var lists : [List]
     var isCompleted : Bool
     var detailsText : String?
     var image: UIImage?
     var lastTimeAddedToList: Date?
     var numOfPurchaces : Int
     
-    init(name: String, category: String, list : List? = nil, completed: Bool = false, details: String? = nil, image : UIImage? = nil, isCompleted: Bool = false, addTime: Date? = nil, numOfPurchaces : Int = 0) {
+    init(name: String, category: String, lists : [List] = [], completed: Bool = false, details: String? = nil, image : UIImage? = nil, isCompleted: Bool = false, addTime: Date? = nil, numOfPurchaces : Int = 0) {
         self.name = name
         self.category = category
-        self.list = list
+        self.lists = lists
         self.isCompleted = completed
         self.detailsText = details
         self.image = image
@@ -32,7 +32,7 @@ class Item : NSObject, NSCoding {
     struct PropertyKey {
         static let name = "name"
         static let category = "category"
-        static let list = "list"
+        static let lists = "lists"
         static let isCompleted = "isCompleted"
         static let detailsText = "detailsText"
         static let image = "image"
@@ -41,7 +41,7 @@ class Item : NSObject, NSCoding {
     }
     
     func equals(_ item: Item) -> Bool {
-        return (self.list?.id == item.list?.id) && (self.name == item.name) && (self.category == item.category)
+        return (self.name == item.name) && (self.category == item.category)
     }
     
     // MARK: Archiving Paths
@@ -52,7 +52,7 @@ class Item : NSObject, NSCoding {
     func encode(with aCoder: NSCoder) {
         aCoder.encode(name, forKey: PropertyKey.name)
         aCoder.encode(category, forKey: PropertyKey.category)
-        aCoder.encode(list, forKey: PropertyKey.list)
+        aCoder.encode(lists, forKey: PropertyKey.lists)
         aCoder.encode(isCompleted, forKey: PropertyKey.isCompleted)
         aCoder.encode(detailsText, forKey: PropertyKey.detailsText)
         aCoder.encode(image, forKey: PropertyKey.image)
@@ -63,14 +63,16 @@ class Item : NSObject, NSCoding {
     required convenience init?(coder aDecoder: NSCoder) {
         let name = aDecoder.decodeObject(forKey: PropertyKey.name) as! String
         let category = aDecoder.decodeObject(forKey: PropertyKey.category) as! String
-        let list = aDecoder.decodeObject(forKey: PropertyKey.list) as? List
+        let lists = aDecoder.decodeObject(forKey: PropertyKey.lists) as? [List] ?? []
         let isCompleted = aDecoder.decodeBool(forKey: PropertyKey.isCompleted)
         let detailsText = aDecoder.decodeObject(forKey: PropertyKey.detailsText) as? String
         let image = aDecoder.decodeObject(forKey: PropertyKey.image) as? UIImage
         let lastTimeAddedToList = aDecoder.decodeObject(forKey: PropertyKey.lastTimeAddedToList) as? Date
         let numOfPurchaces = aDecoder.decodeInteger(forKey: PropertyKey.numOfPurchaces)
         
-        self.init(name: name, category: category, list: list, completed: isCompleted, details: detailsText, image: image, addTime: lastTimeAddedToList, numOfPurchaces: numOfPurchaces)
+        self.init(name: name, category: category, lists: lists, completed: isCompleted, details: detailsText, image: image, addTime: lastTimeAddedToList, numOfPurchaces: numOfPurchaces)
+        
+        print("Item initialized: \(self.name) in lists: \(self.lists.map {$0.name})")
     }
     
 }

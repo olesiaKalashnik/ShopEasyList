@@ -137,7 +137,7 @@ extension LibraryViewController : UITableViewDelegate {
         if editingStyle == .delete {
             let librsaryItemsGrouped = library.groupedItemsAsList
             let itemToBeRemoved = librsaryItemsGrouped[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
-            itemToBeRemoved.list = nil
+            itemToBeRemoved.lists = []
             self.library.remove(itemToBeRemoved)
             tableView.reloadData()
         }

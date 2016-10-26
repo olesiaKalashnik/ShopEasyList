@@ -11,7 +11,7 @@ import UIKit
 class List : NSObject, ItemStoreProtocol, NSCoding {
     
     var items: [Item]
-    var name = "New List"
+    var name : String
     var id : String
     var lastOpen : Bool
     
@@ -22,6 +22,7 @@ class List : NSObject, ItemStoreProtocol, NSCoding {
         self.lastOpen = lastOpen
     }
     
+    // MARK: - Encoding & Decoding
     struct PropertyKeys {
         static let id = "id"
         static let name = "name"
@@ -31,7 +32,6 @@ class List : NSObject, ItemStoreProtocol, NSCoding {
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("lists")
     
-    // MARK: NSCoding
     func encode(with aCoder: NSCoder) {
         aCoder.encode(id, forKey: PropertyKeys.id)
         aCoder.encode(name, forKey: PropertyKeys.name)
@@ -43,6 +43,10 @@ class List : NSObject, ItemStoreProtocol, NSCoding {
         let name = aDecoder.decodeObject(forKey: PropertyKeys.name) as! String
         let lastOpen = aDecoder.decodeBool(forKey: PropertyKeys.lastOpen)
         self.init(items: [Item](), name: name, id: id, lastOpen: lastOpen)
+    }
+    
+    static func ==(_ lhs: List, _ rhs: List) -> Bool {
+        return lhs.id == rhs.id
     }
     
 }

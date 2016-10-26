@@ -14,6 +14,7 @@ class ListViewController: UIViewController {
     @IBOutlet weak var hideCompletedOutlet: UIBarButtonItem!
     
     var currentList : List! = CollectionOfLists.shared.lastOpenList()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var selectedItemWithoutDetails : Item?
     var selectedItemWithDetails : Item?
     
@@ -30,7 +31,7 @@ class ListViewController: UIViewController {
     }
     
     func updateUI() {
-        currentList.items = Library.shared.itemsInList(list: self.currentList)
+        currentList.items = Library.shared.itemsInList(list: currentList)
         self.hideCompletedOutlet.isEnabled = currentList.items.count > 0
         self.tableView.reloadData()
     }
@@ -52,7 +53,7 @@ class ListViewController: UIViewController {
     @IBAction func hideCompleted(_ sender: UIBarButtonItem) {
         for item in Library.shared.items {
             if item.isCompleted {
-                item.list = nil
+                item.lists = item.lists.filter {$0.id != currentList.id}
                 item.isCompleted = false
                 item.numOfPurchaces += 1
                 item.lastTimeAddedToList = Date()
@@ -142,10 +143,14 @@ extension ListViewController : UITableViewDelegate {
 extension ListViewController : Setup {
     func setup() {
         //If no lists have been created yet, create an empty list with default name "New List"
-        if currentList == nil {
+        if currentList == nil && CollectionOfLists.shared.getAllLists().isEmpty {
             self.currentList = List(items: [Item]())
             CollectionOfLists.shared.add(list: currentList)
             CollectionOfLists.shared.saveObjects()
+        } else {
+            if currentList == nil {
+                self.currentList = CollectionOfLists.shared.getAllLists().first!
+            }
         }
         //reset all lists' "lastOpen" property to false
         CollectionOfLists.shared.setListLastOpenToFalse()
@@ -162,7 +167,6 @@ extension ListViewController : Setup {
     }
     
     func setupAppearance() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.lastOpenList = currentList
         
         self.navigationItem.title = self.currentList.name

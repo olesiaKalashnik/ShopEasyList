@@ -20,13 +20,21 @@ class AllListsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Create and save a default list "NewList", if no lists have been created yet
-        if data.count < 1 {
-            let newList = List(items: [Item](), name: "New List")
-            data.append(newList)
-            CollectionOfLists.shared.saveObjects()
+    }
+    
+    func saveNewList(_ textField: UITextField) {
+        if let name = textField.text {
+            if name.characters.count > 0 {
+                let newList = List(items: [Item](), name: name)
+                data.append(newList)
+                CollectionOfLists.shared.add(list: newList)
+                CollectionOfLists.shared.saveObjects()
+                textField.isEnabled = false
+                resignFirstResponder()
+                tableView.reloadData()
+            }
         }
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,11 +65,12 @@ class AllListsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "List" {
             if let destinationVC = segue.destination as? ListViewController {
-                destinationVC.currentList = selectedList
+                if let selectedList = self.selectedList {
+                    destinationVC.currentList = selectedList
+                }
             }
         }
     }
-    
 }
 
 //MARK: - UITextFieldDelegate methods
@@ -69,16 +78,14 @@ class AllListsTableViewController: UITableViewController {
 extension AllListsTableViewController : UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let name = textField.text {
-            let newList = List(items: [Item](), name: name)
-            data.append(newList)
-            CollectionOfLists.shared.add(list: newList)
-            CollectionOfLists.shared.saveObjects()
-        }
-        resignFirstResponder()
-        tableView.reloadData()
+        saveNewList(textField)
         return true
     }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.placeholder = nil
+        return true
+    }
+    
 }
 
 

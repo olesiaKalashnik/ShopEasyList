@@ -28,7 +28,16 @@ class LibraryTableViewCell: UITableViewCell {
     
     @IBAction func completionChecked(_ sender: CheckboxButton) {
         sender.isSelected = !sender.isSelected
-        libraryItem?.list = sender.isSelected ? self.currList : nil
+        if let currList = self.currList, let libraryItem = self.libraryItem {
+            if sender.isSelected && !libraryItem.lists.contains(where: { (list) -> Bool in
+                list.id == currList.id
+            }) {
+                    libraryItem.lists.append(currList)
+            }
+            else {
+                libraryItem.lists = libraryItem.lists.filter {$0.id != currList.id}
+            }
+        }
         libraryItem?.isCompleted = false
     }
 }
